@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
-import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
-import {BaseComponent} from '@app/shared/components/base-component';
-import {takeUntil, tap} from 'rxjs/operators';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { BaseComponent } from '@app/shared/components/base-component';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-top-bar',
@@ -21,6 +21,7 @@ export class TopBarComponent extends BaseComponent implements OnInit {
       .pipe(takeUntil(this.destroyed$))
       .subscribe((langChange: LangChangeEvent) => this.currentLanguage = langChange.lang);
   }
+
   ngOnInit() {
   }
 
@@ -28,7 +29,8 @@ export class TopBarComponent extends BaseComponent implements OnInit {
     alert('That`s sad, you just logged out');
   }
 
-  applyFilter() {}
+  applyFilter() {
+  }
 
   profile() {
     this.router.navigate(['home']);
@@ -47,7 +49,7 @@ export class TopBarComponent extends BaseComponent implements OnInit {
   }
 
   members() {
-    this.router.navigate(['members']);
+    this.router.navigate(['users']);
   }
 
   login() {

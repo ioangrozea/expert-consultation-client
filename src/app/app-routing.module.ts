@@ -27,8 +27,8 @@ const routes: Routes = [
         loadChildren: './archive/archive.module#ArchiveModule',
       },
       {
-        path: 'members',
-        loadChildren: './members/members.module#MembersModule',
+        path: 'users',
+        loadChildren: './users/users.module#UsersModule',
       },
       {
         path: 'authentication',

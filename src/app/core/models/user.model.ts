@@ -1,18 +1,23 @@
 export interface IUser {
   id: number;
-  name: string;
-  username: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  password: string;
+  phoneNumber: string;
+  district: string;
+  organisation: string;
 }
-
 
 export class User {
   id: number;
-  name: string;
-  username: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
+  accessToken: string;
+  phoneNumber: string;
+  district: string;
+  organisation: string;
 
   constructor(aData?: IUser) {
     if (aData) {
@@ -20,19 +25,25 @@ export class User {
     }
   }
 
-  fromJson(aJson: IUser) {
-    this.id = aJson.id || undefined;
-    this.name = aJson.name || undefined;
-    this.username = aJson.username;
-    this.email = aJson.email || undefined;
-    this.password = aJson.password;
+  fromJson(json: IUser) {
+    this.id = json.id;
+    this.firstName = json.firstName;
+    this.lastName = json.lastName;
+    this.email = json.email;
+    this.phoneNumber = json.phoneNumber;
+    this.district = json.district;
+    this.organisation = json.organisation;
   }
 
-  fromForm(aJson: any) {
-    this.id = aJson.id;
-    this.name = aJson.name;
-    this.username = aJson.username;
-    this.email = aJson.email;
-    this.password = aJson.password;
+  toJson(): IUser {
+    return {
+      id: this.id,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      phoneNumber: this.phoneNumber,
+      district: this.district,
+      organisation: this.organisation,
+    } as IUser;
   }
 }

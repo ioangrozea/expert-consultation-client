@@ -1,0 +1,46 @@
+<div class="mat-elevation-z8 table-wrapper">
+  <mat-table #table [dataSource]="tableConfig.dataSource" fxFlex matSort matSortActive="lastName"
+             matSortDirection="asc">
+
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>First name</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.firstName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Last name</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.lastName }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.email }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="phoneNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Phone number</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.phoneNumber }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="district">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>District</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.district }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="organisation">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Organisation</mat-header-cell>
+      <mat-cell *matCellDef="let user">{{ user.organisation}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="tableConfig.displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: tableConfig.displayedColumns;"></mat-row>
+  </mat-table>
+  <div class="table-footer">
+    <mat-paginator #paginator
+                   [hidePageSize]="true"
+                   [length]="pageData.totalElements"
+                   [pageIndex]="pageData.number"
+                   [pageSize]="3"
+                   [showFirstLastButtons]="true"></mat-paginator>
+  </div>
+</div>

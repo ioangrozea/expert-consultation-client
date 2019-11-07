@@ -1,0 +1,7 @@
+<section class="page-view" id="users-page">
+  <app-users-header></app-users-header>
+  <app-users-table (onFilterChange)="onFilterChange($event)"
+                   [filter]="{}"
+                   [pageData]="usersPageData$ | async"
+                   [users]="users$ | async"></app-users-table>
+</section>

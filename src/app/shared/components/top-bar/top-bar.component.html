@@ -1,6 +1,6 @@
 <div id="top-bar">
   <div class="toolbar-row" fxLayout="row" fxLayoutAlign="space-between center">
-    <div class="has-action" fxLayout="row" fxLayoutAlign="center center" [matMenuTriggerFor]="profileMenu">
+    <div [matMenuTriggerFor]="profileMenu" class="has-action" fxLayout="row" fxLayoutAlign="center center">
       <mat-icon color="primary">account_circle</mat-icon>
       <div fxLayout="column" fxLayoutAlign="center start">
         <span class="mat-small name">Adrian Popescu</span>
@@ -8,37 +8,30 @@
       </div>
 
       <mat-menu #profileMenu="matMenu">
-        <button mat-menu-item (click)="profile()">Profil</button>
-        <button mat-menu-item (click)="logout()">Deconectare</button>
+        <button (click)="profile()" mat-menu-item>Profil</button>
+        <button (click)="logout()" mat-menu-item>Deconectare</button>
       </mat-menu>
     </div>
 
     <mat-toolbar fxLayout="row" fxLayoutAlign="end stretch">
-      <button mat-button (click)="about()" routerLinkActive="active">Despre</button>
-      <button mat-button (click)="consultation()" routerLinkActive="active">In consultare</button>
-      <button mat-button (click)="archive()" routerLinkActive="active">Arhiva</button>
-      <button mat-button (click)="members()" routerLinkActive="active">Membri</button>
-      <button mat-button (click)="login()" routerLinkActive="active">Log in</button>
-      <button mat-button [matMenuTriggerFor]="selectLanguage">
-        <span class="flag-icon flag-icon-squared"
-              [ngClass]="{'flag-icon-ro': currentLanguage === 'ro', 'flag-icon-gb': currentLanguage === 'en'}">
+      <button (click)="about()" mat-button routerLinkActive="active">Despre</button>
+      <button (click)="consultation()" mat-button routerLinkActive="active">In consultare</button>
+      <button (click)="archive()" mat-button routerLinkActive="active">Arhiva</button>
+      <button (click)="members()" mat-button routerLinkActive="active">Membri</button>
+      <button (click)="login()" mat-button routerLinkActive="active">Log in</button>
+      <button [matMenuTriggerFor]="selectLanguage" mat-button>
+        <span [ngClass]="{'flag-icon-ro': currentLanguage === 'ro', 'flag-icon-gb': currentLanguage === 'en'}"
+              class="flag-icon flag-icon-squared">
         </span>
       </button>
       <mat-menu #selectLanguage="matMenu">
-        <button mat-menu-item (click)="changeLanguage('ro')">
+        <button (click)="changeLanguage('ro')" mat-menu-item>
           <span class="flag-icon flag-icon-squared flag-icon-ro"></span>
         </button>
-        <button mat-menu-item (click)="changeLanguage('en')">
+        <button (click)="changeLanguage('en')" mat-menu-item>
           <span class="flag-icon flag-icon-squared flag-icon-gb"></span>
         </button>
       </mat-menu>
     </mat-toolbar>
-  </div>
-  <div class="search-row" fxLayout="row" fxLayoutAlign="end center">
-    <div class="empty"></div>
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter()" placeholder="Cauta document...">
-      <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
   </div>
 </div>

@@ -1,12 +1,19 @@
-import { createFeatureSelector, ActionReducerMap } from '@ngrx/store';
+import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
+import { UserState } from '@app/core/store/reducers/users.reducer';
+import * as fromUsers from './users.reducer';
 
 export interface State {
   core: CoreState;
 }
 
-// tslint:disable-next-line
-export interface CoreState {}
+export interface CoreState {
+  users: UserState;
+}
 
-export const reducers: ActionReducerMap<CoreState> = {};
+export const reducers: ActionReducerMap<CoreState> = {
+  users: fromUsers.reducer,
+};
 
 export const getCoreState = createFeatureSelector<CoreState>('core');
+
+export { UserState } from './users.reducer';

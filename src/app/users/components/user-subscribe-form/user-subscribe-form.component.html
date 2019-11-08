@@ -1,0 +1,34 @@
+<mat-card class="subscribe-card">
+  <div class = "subscribe-card-field">
+    <mat-form-field>
+      <input matInput placeholder="Nume" [formControl]="name" required>
+      <mat-error *ngIf="name.invalid">{{getNumeErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Prenume" [formControl]="foreName" required>
+      <mat-error *ngIf="name.invalid">{{getPrenumeErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Email" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field>
+      <input matInput placeholder="Phone" [formControl]="phone" required>
+      <mat-error *ngIf="phone.invalid">{{getPhoneErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Judet" [formControl]="county" required>
+      <mat-error *ngIf="county.invalid">{{getJudetErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Organizatie" [formControl]="organization" required>
+      <mat-error *ngIf="organization.invalid">{{getOrganizationErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </div>
+</mat-card>

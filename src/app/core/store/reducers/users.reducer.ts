@@ -1,24 +1,24 @@
-import { Filter, IUser, PageData, User } from '@app/core';
+import { Filter, IFilter, IPageData, IUser, PageData, User } from '@app/core';
 import * as fromUsers from '../actions/users.action';
 
 export interface UserState {
   entities: { [id: number]: IUser };
   loaded: boolean;
   loading: boolean;
-  pageData: PageData;
-  filter: Filter;
+  pageData: IPageData;
+  filter: IFilter;
 }
 
 export const initialState: UserState = {
   entities: {},
   loaded: false,
   loading: false,
-  pageData: {} as PageData,
+  pageData: {} as IPageData,
   filter: {
     pageNumber: 0,
     sortField: 'lastName',
     sortDirection: 'asc',
-  } as Filter,
+  } as IFilter,
 };
 
 export function reducer(state = initialState, action: fromUsers.UsersAction): UserState {
@@ -34,7 +34,7 @@ export function reducer(state = initialState, action: fromUsers.UsersAction): Us
 
       return {
         ...state,
-        filter,
+        filter: filter.toJson(),
         loading: true,
       } as UserState;
     }
@@ -48,11 +48,14 @@ export function reducer(state = initialState, action: fromUsers.UsersAction): Us
         };
       }, {});
 
+      const pageData = new PageData();
+      pageData.fromPage(usersPage);
+
       return {
         ...state,
         loading: false,
         loaded: true,
-        pageData: new PageData(usersPage),
+        pageData: pageData.toJson(),
         entities,
       };
     }

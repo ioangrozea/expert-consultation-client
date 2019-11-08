@@ -17,5 +17,25 @@
     "Bad.credentials": "The specified username, email or password are not correct.",
     "UsernameOrEmail.not.empty": "Username or email is mandatory",
     "Password.not.empty": "Password is mandatory."
+  },
+  "search": {
+    "label": "Search"
+  },
+  "users": {
+    "table": {
+      "column": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "phoneNumber": "Phone number",
+        "district": "District",
+        "organisation": "Organisation"
+      }
+    },
+    "header": {
+      "button": {
+        "add": "Add members"
+      }
+    }
   }
 }

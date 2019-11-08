@@ -12,9 +12,9 @@ export class UsersApiService {
   }
 
   public list(filter: Filter): Observable<Page<IUser>> {
-    let params = new HttpParams();
-    params = params.set('page', filter.pageNumber.toString());
-    params = params.set('sort', `${filter.sortField},${filter.sortDirection}`);
+    const params = new HttpParams()
+      .set('page', filter.pageNumber.toString())
+      .set('sort', `${filter.sortField},${filter.sortDirection}`);
 
     return this.http.get<any>(`${environment.api_url}/users`, {params})
       .pipe(

@@ -14,22 +14,19 @@ export class UsersComponent implements OnInit {
   public users$: Observable<User[]>;
   public usersPageData$: Observable<PageData>;
   private usersLoaded$: Observable<boolean>;
+  private filter$: Observable<Filter>;
 
   constructor(private store: Store<CoreState>) {
   }
 
   ngOnInit(): void {
     this.usersLoaded$ = this.store.pipe(select(fromStore.getUsersLoaded));
-
-    this.refresh();
+    this.filter$ = this.store.pipe(select(fromStore.getUsersFilter));
+    this.users$ = this.store.pipe(select(fromStore.getUsers));
+    this.usersPageData$ = this.store.pipe(select(fromStore.getUsersPageData));
   }
 
   public onFilterChange(filter: Filter) {
     this.store.dispatch(new fromStore.LoadUsers(filter));
-  }
-
-  private refresh() {
-    this.users$ = this.store.pipe(select(fromStore.getUsers));
-    this.usersPageData$ = this.store.pipe(select(fromStore.getUsersPageData));
   }
 }

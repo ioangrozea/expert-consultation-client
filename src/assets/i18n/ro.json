@@ -17,5 +17,25 @@
     "Bad.credentials": "Numele de utilizator, mailul sau parola nu sunt corecte.",
     "UsernameOrEmail.not.empty": "Numele de utilizator sau mailul este obligatoriu.",
     "Password.not.empty": "Parola este obligatorie."
+  },
+  "search": {
+    "label": "Caută"
+  },
+  "users": {
+    "table": {
+      "column": {
+        "firstName": "Prenume",
+        "lastName": "Nume",
+        "email": "Email",
+        "phoneNumber": "Telefon",
+        "district": "Județ",
+        "organisation": "Organizație"
+      }
+    },
+    "header": {
+      "button": {
+        "add": "Adaugă membri"
+      }
+    }
   }
 }

@@ -1,15 +1,31 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-users-header',
   templateUrl: './users-header.component.html',
   styleUrls: ['./users-header.component.scss']
 })
-export class UsersHeaderComponent {
+export class UsersHeaderComponent implements AfterViewInit {
+  @ViewChild('searchTerm', {static: false}) searchTerm: ElementRef;
+
   @Input()
   public activeView = 'list';
   @Output()
   public onActiveViewChanged: EventEmitter<string> = new EventEmitter();
+  @Output()
+  public onSearchTermChange: EventEmitter<string> = new EventEmitter();
+
+  ngAfterViewInit(): void {
+    if (!!this.searchTerm) {
+      fromEvent(this.searchTerm.nativeElement, 'keyup')
+        .pipe(debounceTime(500), distinctUntilChanged())
+        .subscribe((event: any) => {
+          this.onSearchTermChange.emit(event.target.value);
+        });
+    }
+  }
 
   public isListViewActive() {
     return this.activeView === 'list';

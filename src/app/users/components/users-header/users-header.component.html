@@ -1,14 +1,14 @@
 <div class="users-header">
   <div class="row">
     <div class="column search-term-wrapper">
-      <input class="search-term mat-elevation-z2" placeholder="Cauta" type="text">
+      <input #searchTerm class="search-term mat-elevation-z2" placeholder="{{'search.label' | translate}}" type="text">
     </div>
     <div class="column">
       <div class="row view-switcher">
-        <div [class.active]="isListViewActive()" class="column mat-elevation-z2" (click)="activateView('list')">
+        <div [class.active]="isCardViewActive()" class="column mat-elevation-z2" (click)="activateView('card')">
           <mat-icon>dashboard</mat-icon>
         </div>
-        <div [class.active]="isCardViewActive()" class="column mat-elevation-z2" (click)="activateView('card')">
+        <div [class.active]="isListViewActive()" class="column mat-elevation-z2" (click)="activateView('list')">
           <mat-icon>dehaze</mat-icon>
         </div>
       </div>
@@ -16,7 +16,7 @@
     <div class="column add-button-wrapper">
       <button class="add-button" mat-flat-button>
         <mat-icon>add_circle</mat-icon>
-        Adauga membri
+        {{"users.header.button.add" | translate}}
       </button>
     </div>
   </div>

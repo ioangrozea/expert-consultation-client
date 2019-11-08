@@ -1,10 +1,10 @@
 <section class="page-view" id="users-page">
   <app-users-header></app-users-header>
-  <div *ngIf="!(usersLoaded$ | async)">
+  <div *ngIf="(usersLoaded$ | async) === false">
     <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
   </div>
   <app-users-table *ngIf="usersLoaded$ | async"
-                   (onFilterChange)="onFilterChange($event)"
+                   (filterChange)="onFilterChange($event)"
                    [filter]="filter$ | async"
                    [loading]="usersLoaded$ | async"
                    [pageData]="usersPageData$ | async"

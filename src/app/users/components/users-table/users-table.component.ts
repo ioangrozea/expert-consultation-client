@@ -18,7 +18,7 @@ export class UsersTableComponent implements OnInit, AfterViewInit {
   @Input() filter: Filter;
   @Input() loading: boolean;
 
-  @Output() onFilterChange: EventEmitter<Filter> = new EventEmitter();
+  @Output() filterChange: EventEmitter<Filter> = new EventEmitter();
 
   public tableConfig: any = {};
 
@@ -44,7 +44,7 @@ export class UsersTableComponent implements OnInit, AfterViewInit {
               this.paginator.pageIndex = 0;
             }
 
-            this.onFilterChange.emit(this.getFilter());
+            this.filterChange.emit(this.getFilter());
             return of([]);
           }),
         ).subscribe();

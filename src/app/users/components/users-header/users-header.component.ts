@@ -13,16 +13,16 @@ export class UsersHeaderComponent implements AfterViewInit {
   @Input()
   public activeView = 'list';
   @Output()
-  public onActiveViewChanged: EventEmitter<string> = new EventEmitter();
+  public activeViewChanged: EventEmitter<string> = new EventEmitter();
   @Output()
-  public onSearchTermChange: EventEmitter<string> = new EventEmitter();
+  public searchTermChanged: EventEmitter<string> = new EventEmitter();
 
   ngAfterViewInit(): void {
     if (!!this.searchTerm) {
       fromEvent(this.searchTerm.nativeElement, 'keyup')
         .pipe(debounceTime(500), distinctUntilChanged())
         .subscribe((event: any) => {
-          this.onSearchTermChange.emit(event.target.value);
+          this.searchTermChanged.emit(event.target.value);
         });
     }
   }
@@ -37,6 +37,6 @@ export class UsersHeaderComponent implements AfterViewInit {
 
   public activateView(view: string) {
     this.activeView = view;
-    this.onActiveViewChanged.emit(view);
+    this.activeViewChanged.emit(view);
   }
 }

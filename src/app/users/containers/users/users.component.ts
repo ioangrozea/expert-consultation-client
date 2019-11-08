@@ -4,6 +4,7 @@ import { Filter, PageData, User } from '@app/core';
 import * as fromStore from '@app/core/store';
 import { CoreState } from '@app/core/store';
 import { select, Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -16,10 +17,15 @@ export class UsersComponent {
   private usersLoaded$: Observable<boolean> = this.store.pipe(select(fromStore.getUsersLoaded));
   private filter$: Observable<Filter> = this.store.pipe(select(fromStore.getUsersFilter));
 
-  constructor(private store: Store<CoreState>) {
+  constructor(private store: Store<CoreState>,
+              private router: Router) {
   }
 
   public onFilterChange(filter: Filter) {
     this.store.dispatch(new fromStore.LoadUsers(filter));
+  }
+
+  public onButtonClicked() {
+    this.router.navigate(['/users/add']);
   }
 }

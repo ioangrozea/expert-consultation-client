@@ -1,5 +1,5 @@
 <section class="page-view" id="users-page">
-  <app-users-header></app-users-header>
+  <app-users-header (addButtonClicked)="onButtonClicked()"></app-users-header>
   <div *ngIf="(usersLoaded$ | async) === false">
     <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
   </div>

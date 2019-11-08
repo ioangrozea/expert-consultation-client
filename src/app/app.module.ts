@@ -24,6 +24,7 @@ import { AppComponent } from './app.component';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { JwtInterceptor } from '@app/authentication/jwt.interceptor';
 
 export const metaReducers: any[] = !environment.production ? [storeFreeze] : [];
 
@@ -31,6 +32,10 @@ export const httpInterceptorProviders = [
   {
     provide: HTTP_INTERCEPTORS,
     useClass: HeaderInterceptor,
+    multi: true
+  },  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtInterceptor,
     multi: true
   },
 ];

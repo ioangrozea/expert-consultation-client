@@ -1,10 +1,13 @@
-import { Action } from '@ngrx/store';
-import { Filter, Page, User } from '@app/core';
+import {Action} from '@ngrx/store';
+import {Filter, IUser, Page, User} from '@app/core';
 
 export enum UserActionTypes {
   LoadUsers = '[Users] Load Users',
   LoadUsersSuccess = '[Users] Load Users Success',
   LoadUsersFail = '[Users] Load Users Fail',
+  SaveUser = '[Users] Save User',
+  SaveUserSuccess = '[Users] Save User Success',
+  SaveUserFail = '[Users] Save User Fail',
 }
 
 export class LoadUsers implements Action {
@@ -28,6 +31,30 @@ export class LoadUsersFail implements Action {
   }
 }
 
+export class SaveUser implements Action {
+  readonly type: string = UserActionTypes.SaveUser;
+
+  constructor(public payload: User) {
+  }
+}
+
+export class SaveUserSuccess implements Action {
+  readonly type: string = UserActionTypes.SaveUserSuccess;
+
+  constructor(public payload: IUser) {
+  }
+}
+
+export class SaveUserFail implements Action {
+  readonly type: string = UserActionTypes.SaveUserFail;
+
+  constructor(public payload: any) {
+  }
+}
+
 export type UsersAction = LoadUsers
   | LoadUsersSuccess
-  | LoadUsersFail;
+  | LoadUsersFail
+  | SaveUser
+  | SaveUserSuccess
+  | SaveUserFail;

@@ -1,14 +1,13 @@
 {
   "required": "Câmp obligatoriu.",
   "email": "Adresă de mail incorectă.",
+  "phoneNumber": "Număr de telefon incorect.",
   "validation.Resource.not.found": "Resursa nu a fost găsită.",
-
   "register": {
     "Success": "Utilizatorul a fost înregistrat cu succes.",
     "Duplicate.username": "Numele de utilizator este deja folosit.",
     "Duplicate.email": "Adresa de mail este deja folosită."
   },
-
   "login": {
     "label": {
       "Username.or.email": "Numele de utilizator sau mailul",
@@ -17,6 +16,11 @@
     "Bad.credentials": "Numele de utilizator, mailul sau parola nu sunt corecte.",
     "UsernameOrEmail.not.empty": "Numele de utilizator sau mailul este obligatoriu.",
     "Password.not.empty": "Parola este obligatorie."
+  },
+  "button": {
+    "save": "Salvează",
+    "cancel": "Anulează",
+    "confirm": "Confirmă"
   },
   "search": {
     "label": "Caută"
@@ -32,10 +36,20 @@
         "organisation": "Organizație"
       }
     },
+    "add": {
+      "title": "Adaugă membri",
+      "subTitle": "Vrei să adaugi membri individual?",
+      "subTitle.single": "Adaugă un membru nou.",
+      "option1": "Importă un fișier .csv",
+      "option2": "Copy/paste dintr-un document excel"
+    },
     "header": {
       "button": {
         "add": "Adaugă membri"
       }
+    },
+    "form": {
+      "title": "Adaugă membru"
     }
   }
 }

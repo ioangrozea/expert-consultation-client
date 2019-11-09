@@ -29,10 +29,15 @@
 @mixin material-card-title($font-size: 26px) {
   font-size: $font-size;
   font-weight: normal;
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 @mixin clickable {
   cursor: pointer;
   outline: none;
+}
+
+@mixin flat-button {
+  color: white;
+  border-radius: 1px;
 }

@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { UsersApiService } from '@app/core/http/users-api.service';
-import { Observable } from 'rxjs';
-import { IUser, Page, User } from '@app/core';
-import { select, Store } from '@ngrx/store';
-import { CoreState, getUsersFilter } from '@app/core/store';
-import { map, mergeMap, take } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {UsersApiService} from '@app/core/http/users-api.service';
+import {Observable} from 'rxjs';
+import {IUser, Page, User} from '@app/core';
+import {select, Store} from '@ngrx/store';
+import {CoreState, getUsersFilter} from '@app/core/store';
+import {map, mergeMap, take} from 'rxjs/operators';
 
 @Injectable()
 export class UsersService {
@@ -19,6 +19,10 @@ export class UsersService {
       mergeMap(
         filter => this.usersApiService.list(filter).pipe(map((a) => this.mapPage(a)))
       ));
+  }
+
+  public save(user: User): Observable<IUser> {
+    return this.usersApiService.save(user.toJson());
   }
 
   private fromResponse(userResponse: IUser): User {

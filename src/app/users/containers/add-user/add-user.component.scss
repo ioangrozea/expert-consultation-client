@@ -1,22 +1,35 @@
-.margin {
-  margin-left: 50px;
+@import 'variables';
+@import 'mixins';
+
+.header {
+  background: $legal-consult-grey-background;
+  padding: $legal-consult-padding-md;
+  margin: $legal-consult-margin-md 0;
 }
 
-.title {
-  font-size: 25px;
+.column {
+  @include flex-column();
 }
 
-.text-background {
-  background: #7896be;
-  padding: 10px;
-}
-
-.radio-group {
-  display: flex;
-  flex-direction: column;
-  margin: 15px 0;
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .radio-button {
-  margin: 6px;
+  margin: $legal-consult-margin-sm 0;
+}
+
+.add-users-page {
+  @include flex-column();
+  display: inline-flex;
+  margin-left: 7%;
+}
+
+.confirm-button {
+  @include flat-button();
+  background-color: $legal-consult-green;
+}
+
+.button-wrapper {
+  margin-top: $legal-consult-margin-lg;
 }

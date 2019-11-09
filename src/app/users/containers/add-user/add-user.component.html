@@ -1,11 +1,15 @@
-<div class="margin">
-  <h1>Adauga membri</h1>
-  <span class="text-background">
-    Vrei sa adaugi un membru individaul? <u (click)="redirectToAddSingleUser()">Adauga un membru nou.</u>
+<section class="add-users-page">
+  <h1>{{"users.add.title" | translate}}</h1>
+  <span class="header">
+    {{"users.add.subTitle" | translate}}
+    <u (click)="redirectToAddSingleUser()" class="cursor-pointer">{{"users.add.subTitle.single" | translate}}</u>
   </span>
 
-  <mat-radio-group class="radio-group">
-    <mat-radio-button class="radio-button" value="1">Option 1</mat-radio-button>
-    <mat-radio-button class="radio-button" value="2">Option 2</mat-radio-button>
+  <mat-radio-group class="column">
+    <mat-radio-button class="radio-button" value="1">{{"users.add.option1" | translate}}</mat-radio-button>
+    <mat-radio-button class="radio-button" value="2">{{"users.add.option2" | translate}}</mat-radio-button>
   </mat-radio-group>
-</div>
+  <div class="button-wrapper">
+    <button class="confirm-button" mat-flat-button>{{"button.confirm" | translate}}</button>
+  </div>
+</section>

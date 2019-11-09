@@ -1,14 +1,13 @@
 {
   "required": "Mandatory field.",
   "email": "Invalid email.",
+  "phoneNumber": "Invalid phone number.",
   "validation.Resource.not.found": "Resource was not found.",
-
   "register": {
     "Success": "User registered successfully.",
     "Duplicate.username": "The username is already used.",
     "Duplicate.email": "The email is already used."
   },
-
   "login": {
     "label": {
       "Username.or.email": "Username or email",

@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 import {I18nError} from '@app/core/http/errors/i18n-error';
 import {Tools} from '@app/shared/utils/tools';
 import {AuthenticationApiService} from '@app/core/http';
 import {LoginRequest} from '@app/core/models';
+import * as fromStore from "@app/core/store";
+import {CoreState} from "@app/core/store";
+import {Store} from "@ngrx/store";
+
 @Component({
   selector: 'app-log-in',
   templateUrl: './log-in.component.html',
@@ -15,17 +19,17 @@ export class LogInComponent implements OnInit {
   returnUrl: string;
 
   public logInForm = new FormGroup({
-    usernameOrEmail: new FormControl('', ),
+    usernameOrEmail: new FormControl('',),
     password: new FormControl('', [Validators.required]),
   });
   generalErrors: I18nError[];
 
-  constructor(private router: Router,
-              private route: ActivatedRoute,
-              private authenticationApiService: AuthenticationApiService) {
+  constructor(private route: ActivatedRoute,
+              private authenticationApiService: AuthenticationApiService,
+              private store: Store<CoreState>) {
     // redirect to home if already logged in
     if (this.authenticationApiService.currentUserValue) {
-      this.router.navigate(['/']);
+      this.store.dispatch(new fromStore.RouteChange({path: '/'}));
     }
   }
 
@@ -50,7 +54,7 @@ export class LogInComponent implements OnInit {
 
     this.authenticationApiService.login(this.loginRequest)
       .subscribe({
-        next: login => this.router.navigate([this.returnUrl]),
+        next: () => this.store.dispatch(new fromStore.RouteChange({path: this.returnUrl})),
         error: errors => {
           this.generalErrors = Tools.safeGet(() => errors.error.i18nErrors);
           const i18nFieldErrors: Map<string, I18nError> = Tools.safeGet(() => errors.error.i18nFieldErrors);
@@ -67,11 +71,11 @@ export class LogInComponent implements OnInit {
               [i18nFieldErrors[field].i18nErrorKey]: i18nFieldErrors[field].i18nErrorArguments
             });
           });
-        }});
+        }
+      });
   }
 
   signUp() {
-    this.router.navigate(['authentication/sign-up']);
+    this.store.dispatch(new fromStore.RouteChange({path: 'authentication/sign-up'}));
   }
-
 }

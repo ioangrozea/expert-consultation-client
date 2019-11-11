@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { Router } from '@angular/router';
-import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
-import { BaseComponent } from '@app/shared/components/base-component';
-import { takeUntil } from 'rxjs/operators';
+import {Router} from '@angular/router';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
+import {BaseComponent} from '@app/shared/components/base-component';
+import {takeUntil} from 'rxjs/operators';
+import {Store} from "@ngrx/store";
+import * as fromStore from "@app/core/store";
+import {CoreState} from "@app/core/store";
 
 @Component({
   selector: 'app-top-bar',
@@ -14,7 +17,8 @@ export class TopBarComponent extends BaseComponent implements OnInit {
 
   currentLanguage: string;
 
-  constructor(private router: Router,
+  constructor(private store: Store<CoreState>,
+              private router: Router,
               private translate: TranslateService) {
     super();
     translate.onLangChange
@@ -33,27 +37,27 @@ export class TopBarComponent extends BaseComponent implements OnInit {
   }
 
   profile() {
-    this.router.navigate(['home']);
+    this.store.dispatch(new fromStore.RouteChange({path: 'home'}))
   }
 
   about() {
-    this.router.navigate(['about']);
+    this.store.dispatch(new fromStore.RouteChange({path: 'about'}))
   }
 
   consultation() {
-    this.router.navigate(['in-consultation']);
+    this.store.dispatch(new fromStore.RouteChange({path: 'in-consultation'}))
   }
 
   archive() {
-    this.router.navigate(['archive']);
+    this.store.dispatch(new fromStore.RouteChange({path: 'archive'}))
   }
 
   members() {
-    this.router.navigate(['users']);
+    this.store.dispatch(new fromStore.RouteChange({path: 'users'}))
   }
 
   login() {
-    this.router.navigate(['authentication/log-in']);
+    this.store.dispatch(new fromStore.RouteChange({path: 'authentication/log-in'}))
   }
 
   changeLanguage(lang: string) {

@@ -31,6 +31,8 @@ export class UsersComponent implements OnInit {
   }
 
   public onButtonClicked() {
-    this.store.dispatch(new fromStore.RouteChange({path: '/users/add'}));
+    this.store.dispatch(new fromStore.RouteChange({
+      path: '/users/add',
+    }));
   }
 }

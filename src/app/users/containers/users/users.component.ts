@@ -4,7 +4,6 @@ import {Filter, PageData, User} from '@app/core';
 import * as fromStore from '@app/core/store';
 import {CoreState} from '@app/core/store';
 import {select, Store} from '@ngrx/store';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -17,8 +16,7 @@ export class UsersComponent implements OnInit {
   private usersLoaded$: Observable<boolean>;
   private filter$: Observable<Filter>;
 
-  constructor(private store: Store<CoreState>,
-              private router: Router) {
+  constructor(private store: Store<CoreState>) {
   }
 
   ngOnInit(): void {
@@ -33,6 +31,6 @@ export class UsersComponent implements OnInit {
   }
 
   public onButtonClicked() {
-    this.router.navigate(['/users/add']);
+    this.store.dispatch(new fromStore.RouteChange({path: '/users/add'}));
   }
 }

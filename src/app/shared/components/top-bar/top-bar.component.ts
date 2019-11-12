@@ -1,12 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-
-import {Router} from '@angular/router';
-import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
-import {BaseComponent} from '@app/shared/components/base-component';
-import {takeUntil} from 'rxjs/operators';
-import {Store} from "@ngrx/store";
-import * as fromStore from "@app/core/store";
-import {CoreState} from "@app/core/store";
+import { Component, OnInit } from '@angular/core';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
+import { BaseComponent } from '@app/shared/components/base-component';
+import { takeUntil } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import * as fromStore from '@app/core/store';
+import { CoreState } from '@app/core/store';
 
 @Component({
   selector: 'app-top-bar',
@@ -18,7 +16,6 @@ export class TopBarComponent extends BaseComponent implements OnInit {
   currentLanguage: string;
 
   constructor(private store: Store<CoreState>,
-              private router: Router,
               private translate: TranslateService) {
     super();
     translate.onLangChange

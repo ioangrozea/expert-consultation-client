@@ -1,4 +1,4 @@
-import {Action} from '@ngrx/store';
+import { Action } from '@ngrx/store';
 
 export enum RouterType {
   RouterBack = '[Router] Back',
@@ -17,7 +17,7 @@ export class RouterForward implements Action {
 export class RouteChange implements Action {
   readonly type = RouterType.RouteChange;
 
-  constructor(public payload: { params?: any, path: string }) {
+  constructor(public payload: { path: string, params?: any }) {
   }
 
 }

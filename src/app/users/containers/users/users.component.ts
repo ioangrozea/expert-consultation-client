@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
-import {Filter, PageData, User} from '@app/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Filter, PageData, User } from '@app/core';
 import * as fromStore from '@app/core/store';
-import {CoreState} from '@app/core/store';
-import {select, Store} from '@ngrx/store';
+import { CoreState } from '@app/core/store';
+import { select, Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-users',
@@ -31,8 +31,6 @@ export class UsersComponent implements OnInit {
   }
 
   public onButtonClicked() {
-    this.store.dispatch(new fromStore.RouteChange({
-      path: '/users/add',
-    }));
+    this.store.dispatch(new fromStore.RouteChange({path: '/users/add'}));
   }
 }

@@ -1,8 +1,8 @@
-import {createSelector} from '@ngrx/store';
-import {getCoreState} from '@app/core/store';
+import { createSelector } from '@ngrx/store';
+import { getCoreState } from '@app/core/store';
 import * as fromFeature from '../reducers';
 import * as fromUsers from '../reducers/users.reducer';
-import {Filter, IFilter, IPageData, IUser, PageData, User} from '@app/core';
+import { Filter, IFilter, IPageData, IUser, PageData, User } from '@app/core';
 
 export const getUsersState = createSelector(getCoreState, (state: fromFeature.CoreState) => state.users);
 

@@ -1,9 +1,9 @@
-import {Component} from '@angular/core';
-import {User, UsersService} from '@app/core';
-import {Router} from '@angular/router';
-import {Store} from '@ngrx/store';
+import { Component } from '@angular/core';
+import { User, UsersService } from '@app/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import * as fromStore from '@app/core/store';
-import {CoreState} from '@app/core/store';
+import { CoreState } from '@app/core/store';
 
 @Component({
   selector: 'app-add-single-user',

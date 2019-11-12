@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {TranslateService} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +8,7 @@ import {TranslateService} from '@ngx-translate/core';
 })
 export class AppComponent {
   title = 'legal-consultation-client';
+
   constructor(translate: TranslateService) {
     translate.addLangs(['en', 'ro']);
     translate.setDefaultLang('ro');

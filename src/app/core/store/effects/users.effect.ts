@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {Actions, Effect, ofType} from '@ngrx/effects';
+import { Injectable } from '@angular/core';
+import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as usersActions from '../actions/users.action';
 import * as routerActions from '../actions/router.actions';
-import {catchError, map, switchMap, tap} from 'rxjs/operators';
-import {IUser, User, UsersService} from '@app/core';
-import {of} from 'rxjs';
-import {Page} from '@app/core/models/page.model';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { IUser, User, UsersService } from '@app/core';
+import { of } from 'rxjs';
+import { Page } from '@app/core/models/page.model';
 
 @Injectable()
 export class UsersEffects {
@@ -37,10 +37,7 @@ export class UsersEffects {
   @Effect({dispatch: false})
   successfulSave = this.actions$.pipe(
     ofType(usersActions.UserActionTypes.SaveUserSuccess),
-    tap(() => new routerActions.RouteChange({
-      params: [],
-      path: '/users'
-    })),
+    tap(() => new routerActions.RouteChange({path: '/users'})),
   );
 
   constructor(private actions$: Actions,

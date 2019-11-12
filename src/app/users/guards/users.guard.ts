@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {CanActivate} from '@angular/router';
-import {select, Store} from '@ngrx/store';
-import {UserState} from '@app/core/store';
-import {Observable, of} from 'rxjs';
-import {catchError, filter, switchMap, take, tap} from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { CanActivate } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import { UserState } from '@app/core/store';
+import { Observable, of } from 'rxjs';
+import { catchError, filter, switchMap, take, tap } from 'rxjs/operators';
 import * as fromStore from '../../core/store';
 
 @Injectable()

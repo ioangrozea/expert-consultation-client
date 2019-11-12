@@ -1,5 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as fromStore from '@app/core/store';
+import { CoreState } from '@app/core/store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -7,14 +10,38 @@ import {Router} from '@angular/router';
   styleUrls: ['./add-user.component.scss']
 })
 export class AddUserComponent implements OnInit {
-  constructor(private router: Router) {
+  private csv: boolean;
+  private excel: boolean;
+
+  private optionSelected: boolean;
+
+  constructor(private router: Router,
+              private store: Store<CoreState>) {
   }
 
   ngOnInit() {
   }
 
-  public redirectToAddSingleUser() {
-    this.router.navigate(['/users/add/single']);
+  private redirectToAddSingleUser() {
+    this.router.navigate(['/users/add/single'])
+  }
+
+  private userOptionSelected() {
+    this.optionSelected = true;
+  }
+
+  private selectOption1() {
+    this.csv = true;
+    this.excel = false;
+  }
+
+  private selectOption2() {
+    this.csv = false;
+    this.excel = true;
+  }
+
+  private save(usersExcel: string) {
+    this.store.dispatch(new fromStore.SaveUsersExcel(usersExcel));
   }
 
 }

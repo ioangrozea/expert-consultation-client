@@ -5,11 +5,17 @@
     <u (click)="redirectToAddSingleUser()" class="cursor-pointer">{{"users.add.subTitle.single" | translate}}</u>
   </span>
 
-  <mat-radio-group class="column">
-    <mat-radio-button class="radio-button" value="1">{{"users.add.option1" | translate}}</mat-radio-button>
-    <mat-radio-button class="radio-button" value="2">{{"users.add.option2" | translate}}</mat-radio-button>
-  </mat-radio-group>
-  <div class="button-wrapper">
-    <button class="confirm-button" mat-flat-button>{{"button.confirm" | translate}}</button>
+  <div *ngIf="!optionSelected">
+    <mat-radio-group class="column">
+      <mat-radio-button class="radio-button" value="1"
+                        (click)="selectOption1()">{{"users.add.option1" | translate}}</mat-radio-button>
+      <mat-radio-button class="radio-button" value="2"
+                        (click)="selectOption2()">{{"users.add.option2" | translate}}</mat-radio-button>
+    </mat-radio-group>
+    <div class="button-wrapper">
+      <button [disabled]="! (csv || excel)" class="confirm-button" mat-flat-button
+              (click)="userOptionSelected()">{{"button.confirm" | translate}}</button>
+    </div>
   </div>
+  <app-add-excel-users *ngIf="excel && optionSelected" (save)="save($event)"></app-add-excel-users>
 </section>

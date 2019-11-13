@@ -1,10 +1,10 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
-import {environment} from '@env/environment';
-import {Observable, throwError as observableThrowError} from 'rxjs';
-import {catchError} from 'rxjs/operators';
-import {Filter, IUser} from '@app/core';
-import {Page} from '@app/core/models/page.model';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { environment } from '@env/environment';
+import { Observable, throwError as observableThrowError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Filter, IUser } from '@app/core';
+import { Page } from '@app/core/models/page.model';
 
 @Injectable()
 export class UsersApiService {

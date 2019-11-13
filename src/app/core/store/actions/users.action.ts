@@ -1,5 +1,5 @@
-import {Action} from '@ngrx/store';
-import {Filter, IUser, Page, User} from '@app/core';
+import { Action } from '@ngrx/store';
+import { Filter, IUser, Page, User } from '@app/core';
 
 export enum UserActionTypes {
   LoadUsers = '[Users] Load Users',

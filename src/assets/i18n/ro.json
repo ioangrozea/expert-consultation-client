@@ -40,8 +40,8 @@
       "title": "Adaugă membri",
       "subTitle": "Vrei să adaugi membri individual?",
       "subTitle.single": "Adaugă un membru nou.",
-      "option1": "Importă un fișier .csv",
-      "option2": "Copy/paste dintr-un document excel"
+      "fromCsv": "Importă un fișier .csv",
+      "fromExcel": "Copy/paste dintr-un document excel"
     },
     "header": {
       "button": {

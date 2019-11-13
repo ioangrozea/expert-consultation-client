@@ -35,7 +35,7 @@ export class UsersEffects {
   );
 
   @Effect({dispatch: false})
-  successfulSave = this.actions$.pipe(
+  successfulSave$ = this.actions$.pipe(
     ofType(usersActions.UserActionTypes.SaveUserSuccess),
     tap(() => this.router.navigate(['/users'])),
   );

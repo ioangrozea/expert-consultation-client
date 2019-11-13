@@ -22,8 +22,10 @@ export class UsersGuard implements CanActivate {
   private checkStore(): Observable<boolean> {
     return this.store.pipe(select(fromStore.getUsersLoaded))
       .pipe(
-        tap(() => {
-          this.store.dispatch(new fromStore.LoadUsers());
+        tap((loaded) => {
+          if (!loaded) {
+            this.store.dispatch(new fromStore.LoadUsers());
+          }
         }),
         filter(loaded => loaded),
         take(1)

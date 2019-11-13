@@ -9,12 +9,19 @@ export class AddExcelUsersComponent {
 
   @Output()
   private save: EventEmitter<string> = new EventEmitter();
+  private TAB_OR_SPACE: string = '[\t ]';
+  private GLOBAL_FLAG: string = 'g';
+
   private textValue: string;
 
   constructor() {
   }
 
-  submitExcel() {
-    this.save.emit(this.textValue);
+  public formatExcel(excel: string): string {
+    return excel.replace(new RegExp(this.TAB_OR_SPACE, this.GLOBAL_FLAG), ',');
+  }
+
+  private submitExcel() {
+    this.save.emit(this.formatExcel(this.textValue));
   }
 }

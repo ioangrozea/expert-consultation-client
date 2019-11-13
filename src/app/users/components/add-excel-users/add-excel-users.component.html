@@ -1,7 +1,7 @@
 <div class=text-input-component>
-  <span>Copiaza in chenarul de mai jos</span>
+  <span> {{"users.add.excel" | translate}}</span>
   <form>
     <textarea name="message" [(ngModel)]="textValue" rows="10" cols="70"></textarea><br>
-    <button mat-raised-button (click)="submitExcel()">Submit</button>
+    <button mat-raised-button (click)="submitExcel()">{{"button.save" | translate}}</button>
   </form>
 </div>

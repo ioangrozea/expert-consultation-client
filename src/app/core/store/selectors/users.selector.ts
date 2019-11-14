@@ -26,6 +26,7 @@ export const getUsers = createSelector(getUsersEntities, (entities: { [id: numbe
 
 export const getUsersLoaded = createSelector(getUsersState, fromUsers.getUsersLoaded);
 export const getUsersLoading = createSelector(getUsersState, fromUsers.getUsersLoading);
+export const getUsersShouldReload = createSelector(getUsersState, fromUsers.getUsersShouldReload);
 
 const getUsersPageDataEntityAsInterface = createSelector(getUsersState, fromUsers.getUsersPageData);
 export const getUsersPageData = createSelector(getUsersPageDataEntityAsInterface,

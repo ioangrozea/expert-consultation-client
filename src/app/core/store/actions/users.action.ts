@@ -41,7 +41,7 @@ export class SaveUser implements Action {
 export class SaveUserSuccess implements Action {
   readonly type: string = UserActionTypes.SaveUserSuccess;
 
-  constructor(public payload: IUser) {
+  constructor(public payload: User) {
   }
 }
 

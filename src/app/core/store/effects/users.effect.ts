@@ -28,7 +28,7 @@ export class UsersEffects {
     switchMap((user: User) => {
       return this.usersService.save(user)
         .pipe(
-          map((savedUser: IUser) => new usersActions.SaveUserSuccess(savedUser)),
+          map((savedUser: User) => new usersActions.SaveUserSuccess(savedUser)),
           catchError(error => of(new usersActions.SaveUserFail(error)))
         );
     })

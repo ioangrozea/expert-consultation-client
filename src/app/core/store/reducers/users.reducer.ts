@@ -5,6 +5,7 @@ export interface UserState {
   entities: { [id: number]: IUser };
   loaded: boolean;
   loading: boolean;
+  shouldReload: boolean;
   pageData: IPageData;
   filter: IFilter;
 }
@@ -13,6 +14,7 @@ export const initialState: UserState = {
   entities: {},
   loaded: false,
   loading: false,
+  shouldReload: true,
   pageData: {} as IPageData,
   filter: {
     pageNumber: 0,
@@ -49,6 +51,7 @@ export function reducer(state = initialState, action: fromUsers.UsersAction): Us
         ...state,
         loading: false,
         loaded: true,
+        shouldReload: false,
         pageData: pageData.toJson(),
         entities,
       };
@@ -62,6 +65,13 @@ export function reducer(state = initialState, action: fromUsers.UsersAction): Us
       } as UserState;
     }
 
+    case fromUsers.UserActionTypes.SaveUserSuccess: {
+      return {
+        ...state,
+        shouldReload: true
+      }
+    }
+
     default: {
       return {
         ...state,
@@ -73,5 +83,6 @@ export function reducer(state = initialState, action: fromUsers.UsersAction): Us
 export const getUsersEntities = (state: UserState) => state.entities;
 export const getUsersLoading = (state: UserState) => state.loading;
 export const getUsersLoaded = (state: UserState) => state.loaded;
+export const getUsersShouldReload = (state: UserState) => state.shouldReload;
 export const getUsersPageData = (state: UserState) => state.pageData;
 export const getUsersFilter = (state: UserState) => state.filter;

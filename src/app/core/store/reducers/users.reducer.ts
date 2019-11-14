@@ -69,7 +69,7 @@ export function reducer(state = initialState, action: fromUsers.UsersAction): Us
       return {
         ...state,
         shouldReload: true
-      }
+      };
     }
 
     default: {

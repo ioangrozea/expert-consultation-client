@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as usersActions from '../actions/users.action';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { IUser, User, UsersService } from '@app/core';
+import { User, UsersService } from '@app/core';
 import { of } from 'rxjs';
 import { Page } from '@app/core/models/page.model';
 import { Router } from '@angular/router';
+import { Error } from '@app/core/models/error.model';
 
 @Injectable()
 export class UsersEffects {
@@ -29,7 +30,7 @@ export class UsersEffects {
       return this.usersService.save(user)
         .pipe(
           map((savedUser: User) => new usersActions.SaveUserSuccess(savedUser)),
-          catchError(error => of(new usersActions.SaveUserFail(error)))
+          catchError(error => of(new usersActions.SaveUserFail(this.mapPayloadToUserSaveError(error))))
         );
     })
   );
@@ -43,5 +44,9 @@ export class UsersEffects {
   constructor(private actions$: Actions,
               private usersService: UsersService,
               private router: Router) {
+  }
+
+  mapPayloadToUserSaveError(payload: any): Error {
+    return  payload.error.i18nFieldErrors;
   }
 }

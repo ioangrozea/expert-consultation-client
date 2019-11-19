@@ -43,4 +43,4 @@ export const getUsersFilter = createSelector(getUserFilterAsInterface,
     filter.fromJson(iFilter);
     return filter;
   });
-
+export const getUsersErrors = createSelector(getUsersState, fromUsers.getUsersErrors);

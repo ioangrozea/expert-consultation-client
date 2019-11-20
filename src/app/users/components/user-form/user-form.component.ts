@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '@app/core';
 import { Error, ErrorMessage } from '@app/core/models/error.model';
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.scss']
 })
-export class UserFormComponent implements OnInit {
+export class UserFormComponent implements OnInit, OnChanges {
 
   @Input()
   public user: User;
@@ -24,7 +24,7 @@ export class UserFormComponent implements OnInit {
   public userForm = new FormGroup({
     lastName: new FormControl('', [Validators.required, Validators.max(40)]),
     firstName: new FormControl('', [Validators.required, Validators.max(40)]),
-    email: new FormControl('', [Validators.required, Validators.email], this.validateEmailNotTaken.bind(this)),
+    email: new FormControl('', [Validators.required, Validators.email]),
     phoneNumber: new FormControl('', [Validators.required, Validators.pattern('[0-9]{10}|[+]?[0-9]{11}')]),
     district: new FormControl('', [Validators.required, Validators.max(40)]),
     organisation: new FormControl('', [Validators.required, Validators.max(40)]),
@@ -60,43 +60,9 @@ export class UserFormComponent implements OnInit {
     this.cancel.emit();
   }
 
-
-
-  validateEmailNotTaken(): Observable<{[key : string] : any}>  {
-    return new Observable(observer => {
-      if(this.emailAlreadyExists())
-        observer.next({emailTaken: true});
-      else
-        observer.next(null);
-    })
-  }
-
-  emailAlreadyExists(): boolean{
-    return  this.generateErrorArray(this.error).filter((errorMessages) => errorMessages.i18nErrorKey === ErrorMessage.email).length > 0
-  }
-
-
-  /*  public duplicatedEmail(): boolean {
-      if (this.error) {
-        let errorMessages = this.generateErrorArray(this.error);
-        var anies = errorMessages.filter((errorMessages) => errorMessages.i18nErrorKey === ErrorMessage.email);
-        return anies.length > 0;
-      }
-
-    }*/
-
-  public generateErrorArray(object: any) {
-    return Object.keys(object).map((key) => object[key]);
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['error'].currentValue.email){
+     this.userForm.controls.email.setErrors({emailTaken: true});
+    }
   }
 }
-
-/*
-export class UsernameEmailValidator {
-
-  constructor() {}
-
-  static checkEmail(control: AbstractControl) {
-    return checkUser(control, 'email');
-  }
-}
-*/

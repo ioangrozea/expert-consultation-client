@@ -1,6 +1,9 @@
 {
   "required": "Câmp obligatoriu.",
-  "email": "Adresă de mail incorectă.",
+  "email": {
+    "validator": "Adresă de mail incorectă.",
+    "duplicated": "Adresă deja folosită."
+  },
   "phoneNumber": "Număr de telefon incorect.",
   "validation.Resource.not.found": "Resursa nu a fost găsită.",
   "register": {

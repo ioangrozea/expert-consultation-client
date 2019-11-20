@@ -29,4 +29,10 @@ export class UsersApiService {
       );
   }
 
+  public validateEmail(email: string): Observable<boolean>{
+    return this.http.post<boolean>(`${environment.api_url}/users/email/validate`, email, {})
+      .pipe(
+        catchError(aError => observableThrowError(aError))
+      );
+  }
 }

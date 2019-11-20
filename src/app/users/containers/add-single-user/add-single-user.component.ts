@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromStore from '@app/core/store';
 import { CoreState } from '@app/core/store';
+import 'rxjs-compat/add/operator/map';
 
 @Component({
   selector: 'app-add-single-user',

@@ -1,6 +1,9 @@
 {
   "required": "Mandatory field.",
-  "email": "Invalid email.",
+  "email": {
+    "invalid": "Invalid email.",
+    "duplicated": "Email already in use."
+  },
   "phoneNumber": "Invalid phone number.",
   "validation.Resource.not.found": "Resource was not found.",
   "register": {

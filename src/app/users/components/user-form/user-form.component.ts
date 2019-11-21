@@ -24,7 +24,7 @@ export class UserFormComponent implements OnInit, OnChanges {
     lastName: new FormControl('', [Validators.required, Validators.max(40)]),
     firstName: new FormControl('', [Validators.required, Validators.max(40)]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    phoneNumber: new FormControl('', [Validators.required, Validators.pattern('[0-9]{10}|[+]?[0-9]{11}')]),
+    phoneNumber: new FormControl('', [Validators.required, Validators.pattern('[0-9]{10}')]),
     district: new FormControl('', [Validators.required, Validators.max(40)]),
     organisation: new FormControl('', [Validators.required, Validators.max(40)]),
   });
@@ -33,17 +33,9 @@ export class UserFormComponent implements OnInit, OnChanges {
     this.userForm.patchValue(this.user.toFormData());
   }
 
-  public getEmailErrorMessage() {
-    return this.userForm.controls.email.hasError('required')
-      ? 'required' : this.userForm.controls.email.hasError('emailTaken')
-        ? 'email.duplicated' : this.userForm.controls.email.hasError('email')
-          ? 'email.invalid' : '';
-  }
-
-  public getPhoneErrorMessage() {
-    return this.userForm.controls.phoneNumber.hasError('required')
-      ? 'required' : this.userForm.controls.phoneNumber.hasError('pattern')
-        ? 'phoneNumber' : '';
+  public generateErrorMessage(field: string) {
+    let errors = this.userForm.controls[field].errors;
+    return Object.keys(errors)[0];
   }
 
   public onSave() {
@@ -52,17 +44,39 @@ export class UserFormComponent implements OnInit, OnChanges {
     editedUser.fromFormData(this.userForm.value);
     this.save.emit(editedUser);
     this.userForm.controls.email.markAsTouched();
-    console.log(this.userForm.get('email').errors);
-    console.log(this.userForm.errors);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['error']) {
+      Object.keys(this.error).forEach(field => {
+        this.grateFieldError(field);
+      });
+    }
+  }
+
+  public grateFieldError(field) {
+    if (this.validateField(field)) {
+      const error = this.generateError(field);
+      this.userForm.controls[field].setErrors(error);
+    }
+  }
+
+  public validateField(field) {
+    return this.userForm.controls[field];
+  }
+
+  private generateError(field) {
+    const errorKey = {};
+    errorKey[this.getErrorKey(field)] = true;
+    return errorKey;
+  }
+
+  private getErrorKey(field) {
+    if (this.error[field])
+      return this.error[field]['i18nErrorKey'];
   }
 
   public onCancel() {
     this.cancel.emit();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['error'].currentValue.email) {
-      this.userForm.controls.email.setErrors({emailTaken: true});
-    }
   }
 }

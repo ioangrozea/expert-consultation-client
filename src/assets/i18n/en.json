@@ -1,9 +1,6 @@
 {
   "required": "Mandatory field.",
-  "email": {
-    "invalid": "Invalid email.",
-    "duplicated": "Email already in use."
-  },
+  "pattern": "Invalid phone number",
   "phoneNumber": "Invalid phone number.",
   "validation.Resource.not.found": "Resource was not found.",
   "register": {
@@ -53,6 +50,11 @@
     },
     "form": {
       "title": "Add member"
+    }
+  },
+  "user": {
+    "save": {
+      "duplicatedEmail": "Email already in use."
     }
   }
 }

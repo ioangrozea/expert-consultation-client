@@ -8,7 +8,7 @@ export interface UserState {
   shouldReload: boolean;
   pageData: IPageData;
   filter: IFilter;
-  error: Error
+  error: Error;
 }
 
 export const initialState: UserState = {
@@ -78,7 +78,7 @@ export function reducer(state = initialState, action: fromUsers.UsersAction): Us
       return {
         ...state,
         error: action.payload
-      }
+      };
     }
 
     default: {

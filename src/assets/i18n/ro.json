@@ -1,9 +1,6 @@
 {
   "required": "Câmp obligatoriu.",
-  "email": {
-    "invalid": "Adresă de mail incorectă.",
-    "duplicated": "Adresa de email este deja folosită"
-  },
+  "pattern": "Număr de telefon invalid",
   "phoneNumber": "Număr de telefon incorect.",
   "validation.Resource.not.found": "Resursa nu a fost găsită.",
   "register": {
@@ -53,6 +50,11 @@
     },
     "form": {
       "title": "Adaugă membru"
+    }
+  },
+  "user": {
+    "save": {
+      "duplicatedEmail": "Adresa de email este deja folosită."
     }
   }
 }

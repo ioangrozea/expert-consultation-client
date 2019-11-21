@@ -6,35 +6,40 @@
     <form [formGroup]="userForm" class="column" name="userForm">
       <mat-form-field>
         <input formControlName="lastName" matInput placeholder="{{'users.table.column.lastName' | translate}}" required>
-        <mat-error *ngIf="userForm.controls.lastName.invalid">{{'required' | translate}}</mat-error>
+        <mat-error
+          *ngIf="userForm.controls.lastName.invalid">{{generateErrorMessage('lastName') | translate}}</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <input formControlName="firstName" matInput placeholder="{{'users.table.column.firstName' | translate}}"
                required>
-        <mat-error *ngIf="userForm.controls.firstName.invalid">{{'required' | translate}}</mat-error>
+        <mat-error
+          *ngIf="userForm.controls.firstName.invalid">{{generateErrorMessage('firstName') | translate}}</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <input formControlName="email" matInput placeholder="{{'users.table.column.email' | translate}}" required>
-        <mat-error *ngIf="userForm.controls.email.invalid">{{getEmailErrorMessage() |  translate}}</mat-error>
+        <mat-error *ngIf="userForm.controls.email.invalid">{{generateErrorMessage('email') | translate}}</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <input formControlName="phoneNumber" matInput placeholder="{{'users.table.column.phoneNumber' | translate}}"
                required>
-        <mat-error *ngIf="userForm.controls.phoneNumber.invalid">{{getPhoneErrorMessage() | translate}}</mat-error>
+        <mat-error
+          *ngIf="userForm.controls.phoneNumber.invalid">{{generateErrorMessage('phoneNumber') | translate}}</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <input formControlName="district" matInput placeholder="{{'users.table.column.district' | translate}}" required>
-        <mat-error *ngIf="userForm.controls.district.invalid">{{'required' | translate}}</mat-error>
+        <mat-error
+          *ngIf="userForm.controls.district.invalid">{{generateErrorMessage('district') | translate}}</mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <input formControlName="organisation" matInput placeholder="{{'users.table.column.organisation' | translate}}"
                required>
-        <mat-error *ngIf="userForm.controls.organisation.invalid">{{'required' | translate}}</mat-error>
+        <mat-error
+          *ngIf="userForm.controls.organisation.invalid">{{generateErrorMessage('organisation') | translate}}</mat-error>
       </mat-form-field>
     </form>
   </mat-card-content>

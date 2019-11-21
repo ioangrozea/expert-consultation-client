@@ -65,10 +65,6 @@ export class UserFormComponent implements OnInit, OnChanges {
     return this.userForm.controls[field];
   }
 
-  public onCancel() {
-    this.cancel.emit();
-  }
-
   private generateError(field) {
     const errorKey = {};
     errorKey[this.getErrorKey(field)] = true;
@@ -76,8 +72,11 @@ export class UserFormComponent implements OnInit, OnChanges {
   }
 
   private getErrorKey(field) {
-    if (this.error[field]) {
+    if (this.error[field])
       return this.error[field]['i18nErrorKey'];
-    }
+  }
+
+  public onCancel() {
+    this.cancel.emit();
   }
 }

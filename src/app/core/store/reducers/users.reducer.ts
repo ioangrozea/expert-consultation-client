@@ -8,6 +8,7 @@ export interface UserState {
   shouldReload: boolean;
   pageData: IPageData;
   filter: IFilter;
+  error: Error
 }
 
 export const initialState: UserState = {
@@ -21,6 +22,7 @@ export const initialState: UserState = {
     sortField: 'lastName',
     sortDirection: 'asc',
   } as IFilter,
+  error: {} as Error
 };
 
 export function reducer(state = initialState, action: fromUsers.UsersAction): UserState {
@@ -72,6 +74,13 @@ export function reducer(state = initialState, action: fromUsers.UsersAction): Us
       };
     }
 
+    case fromUsers.UserActionTypes.SaveUserFail: {
+      return {
+        ...state,
+        error: action.payload
+      }
+    }
+
     default: {
       return {
         ...state,
@@ -86,3 +95,4 @@ export const getUsersLoaded = (state: UserState) => state.loaded;
 export const getUsersShouldReload = (state: UserState) => state.shouldReload;
 export const getUsersPageData = (state: UserState) => state.pageData;
 export const getUsersFilter = (state: UserState) => state.filter;
+export const getUsersErrors = (state: UserState) => state.error;

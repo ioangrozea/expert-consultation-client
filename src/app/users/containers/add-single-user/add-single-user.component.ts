@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromStore from '@app/core/store';
 import { CoreState } from '@app/core/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-single-user',
@@ -12,10 +13,13 @@ import { CoreState } from '@app/core/store';
 })
 export class AddSingleUserComponent {
   public user: User = new User();
+  public error: Error;
+  private error$: Observable<Error> = this.store.select(fromStore.getUsersErrors);
 
   constructor(private router: Router,
               private usersService: UsersService,
               private store: Store<CoreState>) {
+    this.error$.subscribe((error) => this.error = error);
   }
 
   public onCancel() {
@@ -25,5 +29,4 @@ export class AddSingleUserComponent {
   public onSave(user: User) {
     this.store.dispatch(new fromStore.SaveUser(user));
   }
-
 }

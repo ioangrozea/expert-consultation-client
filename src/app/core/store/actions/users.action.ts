@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
-import { Filter, IUser, Page, User } from '@app/core';
+import { Filter, Page, User } from '@app/core';
+import { Error } from '@app/core/models/error.model';
 
 export enum UserActionTypes {
   LoadUsers = '[Users] Load Users',
@@ -48,7 +49,7 @@ export class SaveUserSuccess implements Action {
 export class SaveUserFail implements Action {
   readonly type: string = UserActionTypes.SaveUserFail;
 
-  constructor(public payload: any) {
+  constructor(public payload: Error) {
   }
 }
 

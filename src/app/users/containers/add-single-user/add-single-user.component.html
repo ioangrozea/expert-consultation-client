@@ -1,7 +1,3 @@
 <section class="page-view" id="add-single-user-page">
-  <app-user-form (cancel)="onCancel()" (save)="onSave($event)" [user]="user" [error] = "error"></app-user-form>
+  <app-user-form (cancel)="onCancel()" (save)="onSave($event)" [user]="user" [error]="error$ | async"></app-user-form>
 </section>
-<!--<div *ngIf="error$ | async as errorMessages">
-  <li>Error:</li>
-  <p *ngFor="let objArrayElement of generateErrorArray(errorMessages)"> {{objArrayElement.i18nErrorKey}} </p>
-</div>-->

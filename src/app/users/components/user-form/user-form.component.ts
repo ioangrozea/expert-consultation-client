@@ -49,19 +49,19 @@ export class UserFormComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['error']) {
       Object.keys(this.error).forEach(field => {
-        this.grateFieldError(field);
+        this.addFieldError(field);
       });
     }
   }
 
-  public grateFieldError(field) {
-    if (this.validateField(field)) {
+  public addFieldError(field) {
+    if (this.hasField(field)) {
       const error = this.generateError(field);
       this.userForm.controls[field].setErrors(error);
     }
   }
 
-  public validateField(field) {
+  public hasField(field) {
     return this.userForm.controls[field];
   }
 
@@ -72,8 +72,9 @@ export class UserFormComponent implements OnInit, OnChanges {
   }
 
   private getErrorKey(field) {
-    if (this.error[field])
+    if (this.error[field]) {
       return this.error[field]['i18nErrorKey'];
+    }
   }
 
   public onCancel() {

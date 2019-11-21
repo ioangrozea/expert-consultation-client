@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,11 +6,8 @@ import { Router } from '@angular/router';
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.scss']
 })
-export class AddUserComponent implements OnInit {
+export class AddUserComponent {
   constructor(private router: Router) {
-  }
-
-  ngOnInit() {
   }
 
   public redirectToAddSingleUser() {

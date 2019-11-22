@@ -55,6 +55,15 @@
   "user": {
     "save": {
       "duplicatedEmail": "Adresa de email este deja folosită."
+    "file-upload": {
+      "label": {
+        "Choose.file": "Alege fișier",
+        "Uploading": "În curs de încărcare...",
+        "Uploaded.successfully": "Fișier încărcat cu succes!",
+        "Cancel.upload": "Renunță la încarcare",
+        "Error": "Eroare"
+        }
+      }
     }
   }
 }

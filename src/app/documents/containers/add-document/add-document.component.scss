@@ -1,0 +1,30 @@
+@import 'variables';
+@import 'mixins.scss';
+
+.mat-tab-label, .mat-tab-link {
+  color: black;
+}
+
+.active {
+  background-color: rgba(209, 196, 233, 0.3);
+
+}
+
+nav {
+  margin-bottom: 5px;
+}
+
+.container {
+  @include flex;
+  flex-direction: column;
+  .column {
+    @include flex-column;
+  }
+  .row {
+    @include flex-row;
+  }
+}
+
+.add-button {
+  background-color: $legal-consult-green;
+}

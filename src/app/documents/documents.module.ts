@@ -20,7 +20,7 @@ import * as fromStore from './store';
     EffectsModule.forFeature(fromStore.effects),
   ],
   declarations: [
-    ...fromContainer.components
+    ...fromContainer.components,
   ],
   providers: [
     ...fromService.services,

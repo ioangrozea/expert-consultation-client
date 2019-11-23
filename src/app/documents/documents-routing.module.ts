@@ -12,6 +12,10 @@ const routes: Routes = [
     path: ':documentId/breakdown',
     component: fromContainers.DocumentBreakdownComponent,
   },
+  {
+    path: 'add',
+    component: fromContainers.AddDocumentComponent
+  }
 ];
 
 @NgModule({
@@ -22,4 +26,5 @@ const routes: Routes = [
     RouterModule,
   ],
 })
-export class DocumentsRoutingModule {}
+export class DocumentsRoutingModule {
+}

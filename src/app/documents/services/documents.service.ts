@@ -36,4 +36,8 @@ export class DocumentsService {
   private fromResponse(documentResponse: IDocumentConsolidate): DocumentConsolidate {
     return new DocumentConsolidate(documentResponse);
   }
+
+  public saveDocument(documentMetadata: IDocumentMetadata) {
+    this.documentsApiService.post(documentMetadata);
+  }
 }

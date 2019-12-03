@@ -1,7 +1,7 @@
-import {DocumentConsolidate, IDocumentConsolidate} from '@app/documents/models/document-consolidate.model';
-import {Error, IPageData, PageData} from '@app/core';
+import { DocumentConsolidate, IDocumentConsolidate } from '@app/documents/models/document-consolidate.model';
+import { Error, IPageData, PageData } from '@app/core';
 import * as fromActions from '../actions';
-import {DocumentsActionTypes} from '../actions';
+import { DocumentsActionTypes } from '../actions';
 
 export interface DocumentsState {
   entities: { [id: string]: IDocumentConsolidate };
@@ -30,7 +30,7 @@ export function reducer(state = initialState, action: fromActions.DocumentsActio
     case DocumentsActionTypes.LoadDocumentsSuccess: {
       const documentsPage = action.payload;
       const documents = documentsPage.content;
-      const entities = documents.reduce((e: {[id: string]: DocumentConsolidate}, document: DocumentConsolidate) => {
+      const entities = documents.reduce((e: { [id: string]: DocumentConsolidate }, document: DocumentConsolidate) => {
         return {
           ...e,
           [document.id]: document.toJson(),
@@ -64,3 +64,4 @@ export const getDocumentsEntities = (state: DocumentsState) => state.entities;
 export const getDocumentsLoading = (state: DocumentsState) => state.loading;
 export const getDocumentsLoaded = (state: DocumentsState) => state.loaded;
 export const getDocumentsPageData = (state: DocumentsState) => state.pageData;
+export const getFilePath = (state: DocumentsState): string => state.filePath;

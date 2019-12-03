@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
-import {Page} from '@app/core';
-import {DocumentConsolidate} from '@app/documents/models/document-consolidate.model';
+import { Page } from '@app/core';
+import { DocumentConsolidate } from '@app/documents/models/document-consolidate.model';
+import { IDocumentMetadata } from '@app/documents/models/document-metadata.model';
 
 export enum DocumentsActionTypes {
   LoadDocuments = '[Documents] Load Documents',
@@ -24,6 +25,41 @@ export class LoadDocumentsFail implements Action {
   constructor(public error: any) {}
 }
 
-export type DocumentsActions = LoadDocuments
+export class SaveDocument implements Action {
+  readonly type = DocumentsActionTypes.SaveDocument;
+
+  constructor(public payload: IDocumentMetadata) {}
+}
+
+export class SaveDocumentSuccess implements Action {
+  readonly type = DocumentsActionTypes.SaveDocumentSuccess;
+
+  constructor(public payload: string) {}
+}
+
+export class SaveDocumentFail implements Action {
+  readonly type = DocumentsActionTypes.SaveDocumentFail;
+
+  constructor(public payload: any) {}
+}
+
+export class SaveDocumentFile implements Action {
+  readonly type = DocumentsActionTypes.SaveDocumentFile;
+
+  constructor(public payload: any) {}
+}
+
+export class SaveDocumentFileSuccess implements Action {
+  readonly type = DocumentsActionTypes.SaveDocumentFileSuccess;
+
+  constructor(public payload: string) {}
+}
+
+export type DocumentsActions =
+  | LoadDocuments
   | LoadDocumentsFail
-  | LoadDocumentsSuccess;
+  | LoadDocumentsSuccess
+  | SaveDocument
+  | SaveDocumentSuccess
+  | SaveDocumentFail
+  | SaveDocumentFileSuccess;

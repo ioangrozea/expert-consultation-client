@@ -1,11 +1,12 @@
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
-import {Page} from '@app/core';
-import {DocumentsApiService} from '@app/documents/http';
-import {DocumentConsolidate, IDocumentConsolidate} from '@app/documents/models/document-consolidate.model';
-import {Store} from '@ngrx/store';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Page } from '@app/core';
+import { DocumentsApiService } from '@app/documents/http';
+import { DocumentConsolidate, IDocumentConsolidate } from '@app/documents/models/document-consolidate.model';
+import { Store } from '@ngrx/store';
 import * as fromStore from '../store';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { IDocumentMetadata } from '@app/documents/models/document-metadata.model';
 
 @Injectable()
 export class DocumentsService {
@@ -20,6 +21,10 @@ export class DocumentsService {
   public list(): Observable<Page<DocumentConsolidate>> {
     return this.documentsApiService.list()
       .pipe(map(value => this.mapPage(value)));
+  }
+
+  public saveDocument(documentMetadata: IDocumentMetadata) {
+    this.documentsApiService.post(documentMetadata);
   }
 
   private mapPage(userPage: Page<IDocumentConsolidate>): Page<DocumentConsolidate> {

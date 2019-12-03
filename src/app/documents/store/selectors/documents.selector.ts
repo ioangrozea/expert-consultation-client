@@ -1,4 +1,4 @@
-import {createSelector} from '@ngrx/store';
+import { createSelector, MemoizedSelector } from '@ngrx/store';
 import * as fromFeature from '../reducers';
 import * as fromDocuments from '../reducers/documents.reducer';
 import {DocumentConsolidate, IDocumentConsolidate} from '@app/documents/models/document-consolidate.model';
@@ -30,3 +30,7 @@ export const getDocumentsLoading = createSelector(getDocumentsState, fromDocumen
 export const getDocumentsPageData = createSelector(getDocumentsState, fromDocuments.getDocumentsPageData);
 
 
+export const getFilePath: MemoizedSelector<object, string> = createSelector(
+  getDocumentsState,
+  fromDocuments.getFilePath
+);

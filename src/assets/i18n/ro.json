@@ -58,7 +58,6 @@
   "user": {
     "save": {
       "duplicatedEmail": "Adresa de email este deja folosită."
-
     }
   },
   "fileUpload": {
@@ -68,6 +67,22 @@
       "Uploaded.successfully": "Fișier încărcat cu succes!",
       "Cancel.upload": "Renunță la încarcare",
       "Error": "Eroare"
+    }
+  },
+  "document": {
+    "add": {
+      "title": "Titlu document",
+      "number": "Numărul documentului",
+      "initiator": "Initiator",
+      "type": {
+        "name": "Tip de document",
+        "OUG": "Ordonanță de urgență",
+        "HG": "Hotărâre de guvern",
+        "LEGE": "Lege"
+      },
+      "release": "Data eliberării",
+      "receiving": "Data primirii",
+      "file": "Incarcă documentul"
     }
   }
 }

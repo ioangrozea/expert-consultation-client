@@ -1,13 +1,7 @@
-<div class="container">
-  <form [formGroup]="documentForm" class="row" name="documentForm">
-    <mat-form-field class="column">
-      <input formControlName="documentName" matInput placeholder="Document Name"
-             required>
-      <!--<mat-error
-        *ngIf="userForm.controls.lastName.invalid">{{generateErrorMessage('lastName') | translate}}
-      </mat-error>-->
-    </mat-form-field>
-  </form>
+<div class="form-wrapper">
+  <app-document-form
+    (save)="onSave($event)"
+    [document]="document"
+    [filePath]="filePath$ | async"
+  ></app-document-form>
 </div>
-
-<button (click)="onSave()" class="add-button" mat-flat-button>Save</button>

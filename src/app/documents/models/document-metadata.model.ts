@@ -50,4 +50,8 @@ export class DocumentMetadata {
       filePath: this.filePath
     };
   }
+
+  fromFormData(formData: any, filePath: string) {
+    this.fromJson(formData);
+  }
 }

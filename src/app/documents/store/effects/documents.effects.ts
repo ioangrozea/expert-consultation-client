@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as documentsActions from '../actions/documents.actions';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, concatMap, map, switchMap } from 'rxjs/operators';
 import { DocumentsService } from '@app/documents/services';
-import { Page } from '@app/core';
+import { Error, Page } from '@app/core';
 import { DocumentConsolidate } from '@app/documents/models/document-consolidate.model';
 import { of } from 'rxjs';
-import * as fileUploadActions from '../../../core/store/actions/file-upload.action';
-import * as fromStore from '../../store';
 import { CoreState } from '@app/core/store';
 import { Store } from '@ngrx/store';
+import { DocumentMetadata } from '@app/documents/models/document-metadata.model';
 
 @Injectable()
 export class DocumentsEffects {
+  @Effect()
   loadDocuments$ = this.actions$.pipe(
     ofType(documentsActions.DocumentsActionTypes.LoadDocuments),
     switchMap(() => this.documentsService.list()),
@@ -23,67 +23,21 @@ export class DocumentsEffects {
     catchError(error => of(new documentsActions.LoadDocumentsFail(error)))
   );
 
-  // ToDo: nici asa nu merge
-  /*@Effect()
-  uploadDocumentFile$ = this.actions$.pipe(
-    ofType(
-      fileUploadActions.FileUploadActionTypes.UPLOAD_COMPLETED_WITH_RESPONSE
-    ),
-    take(1),
-    tap((action: any) => {
-      this.store$.pipe(select(fromStore.getFilePath)).pipe(
-        map((filePath: string) => {
-          if (filePath !== null) {
-            this.newFileLoaded(action, filePath);
-          } else {
-            this.fileLoaded(action);
-          }
-        })
-      );
-    })
-  );*/
-
-  // ToDo: de ce nu merge asa?
-  /*@Effect()
-  uploadDocumentFile$ = this.actions$.pipe(
-    ofType(fileUploadActions.FileUploadActionTypes.UPLOAD_COMPLETED_WITH_RESPONSE),
-    map((action: any) => {
-      this.store$.pipe(select(fromStore.getFilePath)).pipe(
-        map((filePath: string) => {
-          if (filePath !== null) {
-            this.newFileLoaded(action, filePath);
-          } else {
-            this.fileLoaded(action);
-          }
-        }));
-    }));*/
-
-  // ToDo: de ce merge?
-  /*
-    @Effect()
-    uploadDocumentFile$ = this.actions$.pipe(
-      ofType(fileUploadActions.FileUploadActionTypes.UPLOAD_COMPLETED_WITH_RESPONSE),
-      map((action: any) => {
-        if (getFilePath) {
-          this.store$.dispatch(new documentsActions.SaveDocumentFileSuccess(action.payload));
-          const filePath = getFilePath(action.payload);
-          this.store$.dispatch(new fileUploadActions.DeleteFileAction(filePath));
-        } else {
-          this.store$.dispatch(new documentsActions.SaveDocumentFileSuccess(action.payload));
-        }
-      })
-    );
-  */
-
-  // ToDo: si cand dai save fara sa faci nimic iti da eroare de dispatch si save nu face dispatch la nici un action....
-
   @Effect()
   saveDocument$ = this.actions$.pipe(
     ofType(documentsActions.DocumentsActionTypes.SaveDocument),
-    map((action: any) => {
-      this.documentsService.saveDocument(action.payload);
-    }),
-    catchError(err => of(new fromStore.SaveDocumentFail(err)))
+    map((action: documentsActions.SaveDocument) => action.payload),
+    concatMap((document: DocumentMetadata) => {
+      return this.documentsService.save(document).pipe(
+        map(
+          (savedDocument: DocumentMetadata) =>
+            new documentsActions.SaveDocumentSuccess(savedDocument)
+        ),
+        catchError(error =>
+          of(new documentsActions.SaveDocumentFail(this.mapError(error)))
+        )
+      );
+    })
   );
 
   constructor(
@@ -92,16 +46,7 @@ export class DocumentsEffects {
     private documentsService: DocumentsService
   ) {}
 
-  private fileLoaded(action: any) {
-    this.store$.dispatch(
-      new documentsActions.SaveDocumentFileSuccess(action.payload)
-    );
-  }
-
-  private newFileLoaded(action: any, filePath) {
-    this.store$.dispatch(
-      new documentsActions.SaveDocumentFileSuccess(action.payload)
-    );
-    this.store$.dispatch(new fileUploadActions.DeleteFileAction(filePath));
+  private mapError(payload: any): Error {
+    return payload.error.i18nFieldErrors;
   }
 }

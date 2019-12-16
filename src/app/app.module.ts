@@ -62,7 +62,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   ],
   providers: [
     ...fromGuards.guards,
-    httpInterceptorProviders,
+    ...httpInterceptorProviders,
   ],
 })
 export class AppModule {}

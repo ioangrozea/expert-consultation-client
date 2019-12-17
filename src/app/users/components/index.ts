@@ -19,5 +19,5 @@ export const components: any[] = [
   ImportedUsersTableRowComponent,
   UsersViewComponent,
   UsersCardsComponent,
-  UserCardComponent
+  UserCardComponent,
 ];

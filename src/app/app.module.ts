@@ -26,6 +26,11 @@ export const metaReducers: any[] = !environment.production ? [storeFreeze] : [];
 export const httpInterceptorProviders = [
   {
     provide: HTTP_INTERCEPTORS,
+    useClass: HeaderInterceptor,
+    multi: true,
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
     useClass: JwtInterceptor,
     multi: true,
   },

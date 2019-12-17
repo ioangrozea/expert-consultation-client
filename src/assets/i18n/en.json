@@ -1,6 +1,6 @@
 {
   "required": "Mandatory field.",
-  "email": "Invalid email.",
+  "pattern": "Invalid phone number",
   "phoneNumber": "Invalid phone number.",
   "validation.Resource.not.found": "Resource was not found.",
   "register": {
@@ -38,10 +38,10 @@
     },
     "add": {
       "title": "Add members",
-      "subTitle": "Do you want to add individual member?",
+      "subTitle": "Do you want to add an individual member?",
       "subTitle.single": "Add new member.",
-      "option1": "Import .csv file",
-      "option2": "Copy/paste from excel document",
+      "fromCsv": "Import .csv file",
+      "fromExcel": "Copy/paste from excel document",
       "excel": "Paste in the box below"
     },
     "header": {
@@ -51,6 +51,11 @@
     },
     "form": {
       "title": "Add member"
+    }
+  },
+  "user": {
+    "save": {
+      "duplicatedEmail": "Email already in use."
     }
   }
 }

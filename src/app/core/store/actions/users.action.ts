@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Filter, IUser, Page, User } from '@app/core';
+import { Error, Filter, Page, User } from '../../models';
 
 export enum UserActionTypes {
   LoadUsers = '[Users] Load Users',
@@ -10,75 +10,65 @@ export enum UserActionTypes {
   SaveUserFail = '[Users] Save User Fail',
   SaveUsersExcel = '[Users] Save Users Excel',
   SaveUserExcelSuccess = '[Users] Save Users Excel Success',
-  SaveUserExcelFail = '[Users] Save Users Excel Fail',
-
+  SaveUserExcelFail = '[Users] Save Users Excel Fail'
 }
 
 export class LoadUsers implements Action {
   readonly type: string = UserActionTypes.LoadUsers;
 
-  constructor(public payload?: Filter) {
-  }
+  constructor(public payload?: Filter) {}
 }
 
 export class LoadUsersSuccess implements Action {
   readonly type: string = UserActionTypes.LoadUsersSuccess;
 
-  constructor(public payload: Page<User>) {
-  }
+  constructor(public payload: Page<User>) {}
 }
 
 export class LoadUsersFail implements Action {
   readonly type: string = UserActionTypes.LoadUsersFail;
 
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
 
 export class SaveUser implements Action {
   readonly type: string = UserActionTypes.SaveUser;
 
-  constructor(public payload: User) {
-  }
+  constructor(public payload: User) {}
 }
 
 export class SaveUserSuccess implements Action {
   readonly type: string = UserActionTypes.SaveUserSuccess;
 
-  constructor(public payload: IUser) {
-  }
+  constructor(public payload: User) {}
 }
 
 export class SaveUserFail implements Action {
   readonly type: string = UserActionTypes.SaveUserFail;
 
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
-
 
 export class SaveUsersExcel implements Action {
   readonly type: string = UserActionTypes.SaveUsersExcel;
 
-  constructor(public payload: string) {
-  }
+  constructor(public payload: string) {}
 }
 
 export class SaveUserExcelSuccess implements Action {
   readonly type: string = UserActionTypes.SaveUserExcelSuccess;
 
-  constructor(public payload: IUser[]) {
-  }
+  constructor(public payload: User[]) {}
 }
 
 export class SaveUserExcelFail implements Action {
   readonly type: string = UserActionTypes.SaveUserExcelFail;
 
-  constructor(public payload: any) {
-  }
+  constructor(public payload: Error) {}
 }
 
-export type UsersAction = LoadUsers
+export type UsersAction =
+  | LoadUsers
   | LoadUsersSuccess
   | LoadUsersFail
   | SaveUser

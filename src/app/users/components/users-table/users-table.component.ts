@@ -1,17 +1,27 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { Filter, PageData, User } from '@app/core';
 import { MatPaginator, MatSort, PageEvent, Sort } from '@angular/material';
 import { merge, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, takeUntil } from 'rxjs/operators';
+import { BaseComponent } from '@app/shared/components/base-component';
 
 @Component({
   selector: 'app-users-table',
   templateUrl: './users-table.component.html',
   styleUrls: ['./users-table.component.scss']
 })
-export class UsersTableComponent implements OnInit, AfterViewInit {
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+export class UsersTableComponent extends BaseComponent
+  implements OnInit, AfterViewInit {
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   @Input() users: User[];
   @Input() pageData: PageData;
@@ -30,8 +40,8 @@ export class UsersTableComponent implements OnInit, AfterViewInit {
         'email',
         'phoneNumber',
         'district',
-        'organisation',
-      ],
+        'organisation'
+      ]
     };
   }
 
@@ -47,7 +57,9 @@ export class UsersTableComponent implements OnInit, AfterViewInit {
             this.filterChange.emit(this.getFilter());
             return of([]);
           }),
-        ).subscribe();
+          takeUntil(this.destroyed$)
+        )
+        .subscribe();
     }
   }
 
@@ -59,5 +71,4 @@ export class UsersTableComponent implements OnInit, AfterViewInit {
 
     return filter;
   }
-
 }

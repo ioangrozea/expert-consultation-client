@@ -3,44 +3,62 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '@env/environment';
-import { LoginRequest, User, UserRequest } from '../models';
-import { AuthenticationService } from '@app/core/services';
+import { LoginRequest, UserRequest } from '../models';
+import { AuthenticationService } from '../services/authentication.service';
 
-@Injectable({providedIn: 'root'})
+export class AuthenticationData {
+  public accessToken: string;
+  public tokenType: string;
+}
+
+@Injectable({ providedIn: 'root' })
 export class AuthenticationApiService {
-  public currentUser: Observable<User>;
-  private currentUserSubject: BehaviorSubject<User>;
+  public authenticationData: Observable<AuthenticationData>;
+  private authenticationDataSubject: BehaviorSubject<AuthenticationData>;
 
-  constructor(private http: HttpClient,
-              private authenticationService: AuthenticationService) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(this.authenticationService.getCurrentUser()));
-    this.currentUser = this.currentUserSubject.asObservable();
+  constructor(
+    private http: HttpClient,
+    private authenticationService: AuthenticationService
+  ) {
+    this.authenticationDataSubject = new BehaviorSubject<AuthenticationData>(
+      JSON.parse(this.authenticationService.getAuthenticationData())
+    );
+    this.authenticationData = this.authenticationDataSubject.asObservable();
   }
 
-  public get currentUserValue(): User {
-    return this.currentUserSubject.value;
+  public get authenticationDataValue(): AuthenticationData {
+    return this.authenticationDataSubject.value;
   }
 
   login(loginRequest: LoginRequest) {
-    return this.http.post<LoginRequest>(`${environment.api_url}/auth/signin`, loginRequest)
-      .pipe(map((auth: any) => {
-        // login successful if there's a jwt token in the response
-        if (auth && auth.accessToken) {
-          // store auth details and jwt token in local storage to keep user logged in between page refreshes
-          this.authenticationService.setCurrentUser(auth);
-          this.currentUserSubject.next(auth);
-        }
+    return this.http
+      .post<AuthenticationData>(
+        `${environment.api_url}/auth/signin`,
+        loginRequest
+      )
+      .pipe(
+        map((auth: AuthenticationData) => {
+          // login successful if there's a jwt accessToken in the response
+          if (auth && auth.accessToken) {
+            // store auth details and jwt accessToken in local storage to keep user logged in between page refreshes
+            this.authenticationService.setAuthenticationData(auth);
+            this.authenticationDataSubject.next(auth);
+          }
 
-        return auth;
-      }));
+          return auth;
+        })
+      );
   }
 
   signup(signupForm: UserRequest) {
-    return this.http.post<UserRequest>(`${environment.api_url}/auth/signup`, signupForm);
+    return this.http.post<UserRequest>(
+      `${environment.api_url}/auth/signup`,
+      signupForm
+    );
   }
 
   logout() {
-    this.authenticationService.removeCurrentUser();
-    this.currentUserSubject.next(null);
+    this.authenticationService.removeAuthenticationData();
+    this.authenticationDataSubject.next(null);
   }
 }

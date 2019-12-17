@@ -1,0 +1,27 @@
+<div
+  class="message"
+  *ngIf="(isReady$ | async) || (completed$ | async) || (hasFailed$ | async)"
+>
+  <button type="button" mat-raised-button (click)="file.click()">
+    {{ 'fileUpload.label.Choose.file' | translate }}
+  </button>
+  <input #file type="file" multiple (change)="uploadFile($event)" hidden />
+</div>
+<div class="message" *ngIf="isInProgress$ | async">
+  <div style="margin-bottom: 14px;">
+    {{ 'fileUpload.label.Uploading' | translate }} {{ progress$ | async }}%
+  </div>
+</div>
+<div class="message" *ngIf="isInProgress$ | async">
+  <button mat-raised-button (click)="cancelUpload()">
+    {{ 'fileUpload.label.Cancel.upload' | translate }}
+  </button>
+</div>
+<div class="message" *ngIf="completed$ | async">
+  <h4>
+    {{ 'fileUpload.label.Uploaded.successfully' | translate }}
+  </h4>
+</div>
+<div class="message error" *ngIf="hasFailed$ | async">
+  {{ 'fileUpload.label.Error' | translate }} {{ error$ | async }}
+</div>

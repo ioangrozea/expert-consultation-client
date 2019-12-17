@@ -15,15 +15,12 @@ export class AddUserComponent implements OnInit {
 
   private optionSelected: boolean;
 
-  constructor(private router: Router,
-              private store: Store<CoreState>) {
-  }
+  constructor(private router: Router, private store: Store<CoreState>) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   private redirectToAddSingleUser() {
-    this.router.navigate(['/users/add/single'])
+    this.router.navigate(['/users/add/single']);
   }
 
   private userOptionSelected() {
@@ -43,5 +40,4 @@ export class AddUserComponent implements OnInit {
   private save(usersExcel: string) {
     this.store.dispatch(new fromStore.SaveUsersExcel(usersExcel));
   }
-
 }

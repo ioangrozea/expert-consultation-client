@@ -18,13 +18,7 @@ export class PageData {
   totalPages: number;
 
   fromPage(otherPage: Page<any>) {
-    this.first = otherPage.first;
-    this.last = otherPage.last;
-    this.number = otherPage.number;
-    this.numberOfElements = otherPage.numberOfElements;
-    this.size = otherPage.size;
-    this.totalElements = otherPage.totalElements;
-    this.totalPages = otherPage.totalPages;
+    this.fromJson(otherPage as IPageData);
   }
 
   fromJson(json: IPageData) {
@@ -45,7 +39,7 @@ export class PageData {
       numberOfElements: this.numberOfElements,
       size: this.size,
       totalElements: this.totalElements,
-      totalPages: this.totalPages,
+      totalPages: this.totalPages
     } as PageData;
   }
 }

@@ -11,26 +11,25 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./top-bar.component.scss']
 })
 export class TopBarComponent extends BaseComponent implements OnInit {
-
   currentLanguage: string;
 
-  constructor(private router: Router,
-              private translate: TranslateService) {
+  constructor(private router: Router, private translate: TranslateService) {
     super();
     translate.onLangChange
       .pipe(takeUntil(this.destroyed$))
-      .subscribe((langChange: LangChangeEvent) => this.currentLanguage = langChange.lang);
+      .subscribe(
+        (langChange: LangChangeEvent) =>
+          (this.currentLanguage = langChange.lang)
+      );
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   logout() {
     alert('That`s sad, you just logged out');
   }
 
-  applyFilter() {
-  }
+  applyFilter() {}
 
   profile() {
     this.router.navigate(['home']);
@@ -58,5 +57,12 @@ export class TopBarComponent extends BaseComponent implements OnInit {
 
   changeLanguage(lang: string) {
     this.translate.use(lang);
+  }
+
+  getFlagClasses(): object {
+    return {
+      'flag-icon-ro': this.currentLanguage === 'ro',
+      'flag-icon-gb': this.currentLanguage === 'en'
+    };
   }
 }

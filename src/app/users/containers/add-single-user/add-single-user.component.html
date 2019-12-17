@@ -1,3 +1,8 @@
 <section class="page-view" id="add-single-user-page">
-  <app-user-form (cancel)="onCancel()" (save)="onSave($event)" [user]="user"></app-user-form>
+  <app-user-form
+    (cancel)="onCancel()"
+    (save)="onSave($event)"
+    [user]="user"
+    [error]="error$ | async"
+  ></app-user-form>
 </section>

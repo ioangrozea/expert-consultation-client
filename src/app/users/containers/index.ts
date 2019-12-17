@@ -11,4 +11,3 @@ export const components: any[] = [
 ];
 
 export * from './users/users.component';
-

@@ -1,6 +1,6 @@
 {
   "required": "Câmp obligatoriu.",
-  "email": "Adresă de mail incorectă.",
+  "pattern": "Număr de telefon invalid",
   "phoneNumber": "Număr de telefon incorect.",
   "validation.Resource.not.found": "Resursa nu a fost găsită.",
   "register": {
@@ -40,8 +40,8 @@
       "title": "Adaugă membri",
       "subTitle": "Vrei să adaugi membri individual?",
       "subTitle.single": "Adaugă un membru nou.",
-      "option1": "Importă un fișier .csv",
-      "option2": "Copy/paste dintr-un document excel",
+      "fromCsv": "Importă un fișier .csv",
+      "fromExcel": "Copy/paste dintr-un document excel",
       "excel": "Copiază în chenarul de mai jos"
     },
     "header": {
@@ -51,6 +51,20 @@
     },
     "form": {
       "title": "Adaugă membru"
+    }
+  },
+  "user": {
+    "save": {
+      "duplicatedEmail": "Adresa de email este deja folosită.",
+      "fileUpload": {
+        "label": {
+          "Choose.file": "Alege fișier",
+          "Uploading": "În curs de încărcare...",
+          "Uploaded.successfully": "Fișier încărcat cu succes!",
+          "Cancel.upload": "Renunță la încarcare",
+          "Error": "Eroare"
+        }
+      }
     }
   }
 }

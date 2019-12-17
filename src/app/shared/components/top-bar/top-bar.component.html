@@ -1,6 +1,11 @@
 <div id="top-bar">
   <div class="toolbar-row" fxLayout="row" fxLayoutAlign="space-between center">
-    <div [matMenuTriggerFor]="profileMenu" class="has-action" fxLayout="row" fxLayoutAlign="center center">
+    <div
+      [matMenuTriggerFor]="profileMenu"
+      class="has-action"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+    >
       <mat-icon color="primary">account_circle</mat-icon>
       <div fxLayout="column" fxLayoutAlign="center start">
         <span class="mat-small name">Adrian Popescu</span>
@@ -14,15 +19,26 @@
     </div>
 
     <mat-toolbar fxLayout="row" fxLayoutAlign="end stretch">
-      <button (click)="about()" mat-button routerLinkActive="active">Despre</button>
-      <button (click)="consultation()" mat-button routerLinkActive="active">In consultare</button>
-      <button (click)="archive()" mat-button routerLinkActive="active">Arhiva</button>
-      <button (click)="members()" mat-button routerLinkActive="active">Membri</button>
-      <button (click)="login()" mat-button routerLinkActive="active">Log in</button>
+      <button (click)="about()" mat-button routerLinkActive="active">
+        Despre
+      </button>
+      <button (click)="consultation()" mat-button routerLinkActive="active">
+        In consultare
+      </button>
+      <button (click)="archive()" mat-button routerLinkActive="active">
+        Arhiva
+      </button>
+      <button (click)="members()" mat-button routerLinkActive="active">
+        Membri
+      </button>
+      <button (click)="login()" mat-button routerLinkActive="active">
+        Log in
+      </button>
       <button [matMenuTriggerFor]="selectLanguage" mat-button>
-        <span [ngClass]="{'flag-icon-ro': currentLanguage === 'ro', 'flag-icon-gb': currentLanguage === 'en'}"
-              class="flag-icon flag-icon-squared">
-        </span>
+        <span
+          [ngClass]="getFlagClasses()"
+          class="flag-icon flag-icon-squared"
+        ></span>
       </button>
       <mat-menu #selectLanguage="matMenu">
         <button (click)="changeLanguage('ro')" mat-menu-item>

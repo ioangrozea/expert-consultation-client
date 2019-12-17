@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
-  constructor() { }
+  private authDataKey = 'authenticationData';
 
-  setCurrentUser(user) {
-    localStorage.setItem('currentUser', JSON.stringify(user));
+  setAuthenticationData(data) {
+    localStorage.setItem(this.authDataKey, JSON.stringify(data));
   }
 
-  getCurrentUser() {
-    return localStorage.getItem('currentUser');
+  getAuthenticationData() {
+    return localStorage.getItem(this.authDataKey);
   }
 
-  removeCurrentUser() {
-    localStorage.removeItem('currentUser');
+  removeAuthenticationData() {
+    localStorage.removeItem(this.authDataKey);
   }
 }

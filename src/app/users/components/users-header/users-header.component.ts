@@ -1,6 +1,14 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {fromEvent} from 'rxjs';
-import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild
+} from '@angular/core';
+import { fromEvent } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-users-header',
@@ -8,7 +16,7 @@ import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
   styleUrls: ['./users-header.component.scss']
 })
 export class UsersHeaderComponent implements AfterViewInit {
-  @ViewChild('searchTerm', {static: false}) searchTerm: ElementRef;
+  @ViewChild('searchTerm', { static: false }) searchTerm: ElementRef;
 
   @Input()
   public activeView = 'list';

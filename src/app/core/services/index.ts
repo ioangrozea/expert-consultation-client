@@ -1,10 +1,7 @@
 import { AuthenticationService } from './authentication.service';
-import { UsersService } from '@app/core/services/users.service';
+import { UserService } from './user.service';
 
-export const services: any[] = [
-  AuthenticationService,
-  UsersService,
-];
+export const services: any[] = [AuthenticationService, UserService];
 
 export * from './authentication.service';
-export * from './users.service';
+export * from './user.service';

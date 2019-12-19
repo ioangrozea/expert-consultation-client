@@ -10,3 +10,4 @@ export const components: any[] = [
 
 export * from './documents/documents.component';
 export * from './document-breakdown/document-breakdown.component';
+export * from './add-document/add-document.component';

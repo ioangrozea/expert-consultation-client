@@ -7,6 +7,9 @@ export enum DocumentsActionTypes {
   LoadDocuments = '[Documents] Load Documents',
   LoadDocumentsSuccess = '[Documents] Load Documents Success',
   LoadDocumentsFail = '[Documents] Load Documents Fail',
+  SaveDocument = '[Documents] Save Documents',
+  SaveDocumentSuccess = '[Documents] Save Documents Success',
+  SaveDocumentFail = '[Documents] Save Documents Fail'
 }
 
 export class LoadDocuments implements Action {
@@ -34,7 +37,7 @@ export class SaveDocument implements Action {
 export class SaveDocumentSuccess implements Action {
   readonly type = DocumentsActionTypes.SaveDocumentSuccess;
 
-  constructor(public payload: string) {}
+  constructor(public payload: IDocumentMetadata) {}
 }
 
 export class SaveDocumentFail implements Action {
@@ -43,23 +46,10 @@ export class SaveDocumentFail implements Action {
   constructor(public payload: any) {}
 }
 
-export class SaveDocumentFile implements Action {
-  readonly type = DocumentsActionTypes.SaveDocumentFile;
-
-  constructor(public payload: any) {}
-}
-
-export class SaveDocumentFileSuccess implements Action {
-  readonly type = DocumentsActionTypes.SaveDocumentFileSuccess;
-
-  constructor(public payload: string) {}
-}
-
 export type DocumentsActions =
-  | LoadDocuments
-  | LoadDocumentsFail
-  | LoadDocumentsSuccess
-  | SaveDocument
-  | SaveDocumentSuccess
-  | SaveDocumentFail
-  | SaveDocumentFileSuccess;
+    | LoadDocuments
+    | LoadDocumentsFail
+    | LoadDocumentsSuccess
+    | SaveDocument
+    | SaveDocumentSuccess
+    | SaveDocumentFail;

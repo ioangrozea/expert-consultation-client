@@ -6,7 +6,7 @@ import { DocumentConsolidate, IDocumentConsolidate } from '@app/documents/models
 import { Store } from '@ngrx/store';
 import * as fromStore from '../store';
 import { map } from 'rxjs/operators';
-import { IDocumentMetadata } from '@app/documents/models/document-metadata.model';
+import { DocumentMetadata, IDocumentMetadata } from '@app/documents/models/document-metadata.model';
 
 @Injectable()
 export class DocumentsService {
@@ -23,8 +23,12 @@ export class DocumentsService {
       .pipe(map(value => this.mapPage(value)));
   }
 
-  public saveDocument(documentMetadata: IDocumentMetadata) {
-    this.documentsApiService.post(documentMetadata);
+  public save(documentMetadata: DocumentMetadata): Observable<DocumentMetadata> {
+    return this.documentsApiService
+        .post(documentMetadata.toJson())
+        .pipe(
+            map((iDocument: IDocumentMetadata) => new DocumentMetadata(iDocument))
+        );
   }
 
   private mapPage(userPage: Page<IDocumentConsolidate>): Page<DocumentConsolidate> {
@@ -35,9 +39,5 @@ export class DocumentsService {
 
   private fromResponse(documentResponse: IDocumentConsolidate): DocumentConsolidate {
     return new DocumentConsolidate(documentResponse);
-  }
-
-  public saveDocument(documentMetadata: IDocumentMetadata) {
-    this.documentsApiService.post(documentMetadata);
   }
 }

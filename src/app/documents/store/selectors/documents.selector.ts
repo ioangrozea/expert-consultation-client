@@ -28,9 +28,3 @@ export const getDocuments = createSelector(getDocumentsEntities,
 export const getDocumentsLoaded = createSelector(getDocumentsState, fromDocuments.getDocumentsLoaded);
 export const getDocumentsLoading = createSelector(getDocumentsState, fromDocuments.getDocumentsLoading);
 export const getDocumentsPageData = createSelector(getDocumentsState, fromDocuments.getDocumentsPageData);
-
-
-export const getFilePath: MemoizedSelector<object, string> = createSelector(
-  getDocumentsState,
-  fromDocuments.getFilePath
-);

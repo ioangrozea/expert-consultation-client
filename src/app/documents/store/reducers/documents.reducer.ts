@@ -64,4 +64,3 @@ export const getDocumentsEntities = (state: DocumentsState) => state.entities;
 export const getDocumentsLoading = (state: DocumentsState) => state.loading;
 export const getDocumentsLoaded = (state: DocumentsState) => state.loaded;
 export const getDocumentsPageData = (state: DocumentsState) => state.pageData;
-export const getFilePath = (state: DocumentsState): string => state.filePath;

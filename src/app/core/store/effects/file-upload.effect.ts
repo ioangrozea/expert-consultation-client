@@ -41,6 +41,8 @@ export class UploadFileEffects {
 
   private getActionFromHttpEvent(event: HttpEvent<any>): Action {
     switch (event.type) {
+      case HttpEventType.User:
+        break;
       case HttpEventType.Sent: {
         return new UploadStartedAction();
       }
@@ -50,20 +52,20 @@ export class UploadFileEffects {
         });
       }
       case HttpEventType.ResponseHeader:
-        if (event.status === 200) {
-          return new UploadCompletedAction();
-        } else {
-          return new UploadFailureAction({
-            error: event.statusText
-          });
+        switch (event.status) {
+          case 200:
+          case 201:
+            return new UploadCompletedAction();
+          default:
+            return new UploadFailureAction({ error: event.statusText });
         }
       case HttpEventType.Response: {
-        if (event.status === 200) {
-          return new UploadCompletedWithResponseAction(event.body);
-        } else {
-          return new UploadFailureAction({
-            error: event.statusText
-          });
+        switch (event.status) {
+          case 200:
+          case 201:
+            return new UploadCompletedWithResponseAction(event.body);
+          default:
+            return new UploadFailureAction({ error: event.statusText });
         }
       }
       case HttpEventType.DownloadProgress: {

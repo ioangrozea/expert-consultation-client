@@ -21,8 +21,10 @@ export class DocumentMetadata {
   dateOfReceipt: Date;
   filePath: string;
 
-  constructor(data: IDocumentMetadata) {
-    this.fromJson(data);
+  constructor(data?: IDocumentMetadata) {
+    if (data) {
+      this.fromJson(data);
+    }
   }
 
   fromJson(data: IDocumentMetadata) {
@@ -47,5 +49,13 @@ export class DocumentMetadata {
       dateOfReceipt: this.dateOfReceipt,
       filePath: this.filePath
     };
+  }
+
+  fromFormData(formData: any, filePath: string) {
+    this.fromJson(formData);
+  }
+
+  toFormData(): any {
+    return this.toJson();
   }
 }

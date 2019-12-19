@@ -1,0 +1,8 @@
+@import 'mixins';
+
+.import-csv-page {
+  @include flex-column();
+  margin: 2%;
+  width: auto;
+  display: block;
+}

@@ -1,7 +1,4 @@
-import {
-  DocumentConsolidate,
-  IDocumentConsolidate
-} from '@app/documents/models/document-consolidate.model';
+import { DocumentConsolidate, IDocumentConsolidate } from '@app/documents/models/document-consolidate.model';
 import { Error, IPageData, PageData } from '@app/core';
 import * as fromActions from '../actions';
 import { DocumentsActionTypes } from '../actions';
@@ -22,31 +19,23 @@ export const initialState: DocumentsState = {
   error: null
 };
 
-export function reducer(
-  state = initialState,
-  action: fromActions.DocumentsActions
-): DocumentsState {
+export function reducer(state = initialState, action: fromActions.DocumentsActions): DocumentsState {
+
   switch (action.type) {
     case DocumentsActionTypes.LoadDocuments:
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case DocumentsActionTypes.LoadDocumentsSuccess: {
       const documentsPage = action.payload;
       const documents = documentsPage.content;
-      const entities = documents.reduce(
-        (
-          e: { [id: string]: DocumentConsolidate },
-          document: DocumentConsolidate
-        ) => {
-          return {
-            ...e,
-            [document.id]: document.toJson()
-          };
-        },
-        {}
-      );
+      const entities = documents.reduce((e: { [id: string]: DocumentConsolidate }, document: DocumentConsolidate) => {
+        return {
+          ...e,
+          [document.id]: document.toJson(),
+        };
+      }, {});
       const pageData = new PageData();
       pageData.fromPage(documentsPage);
 
@@ -55,20 +44,21 @@ export function reducer(
         loading: false,
         loaded: true,
         pageData: pageData.toJson(),
-        entities
+        entities,
       };
     }
     case DocumentsActionTypes.LoadDocumentsFail:
       return {
         ...state,
         loading: false,
-        loaded: false
+        loaded: false,
       };
     default: {
       return state;
     }
   }
 }
+
 
 export const getDocumentsEntities = (state: DocumentsState) => state.entities;
 export const getDocumentsLoading = (state: DocumentsState) => state.loading;

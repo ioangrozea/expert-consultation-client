@@ -8,24 +8,27 @@ import * as fromStore from '../../core/store';
 
 @Injectable()
 export class UsersGuard implements CanActivate {
-  constructor(private store: Store<UserState>) {}
+  constructor(private store: Store<UserState>) {
+  }
 
   canActivate(): Observable<boolean> {
-    return this.checkStore().pipe(
-      switchMap(() => of(true)),
-      catchError(() => of(false))
-    );
+    return this.checkStore()
+      .pipe(
+        switchMap(() => of(true)),
+        catchError(() => of(false))
+      );
   }
 
   private checkStore(): Observable<boolean> {
-    return this.store.pipe(select(fromStore.getUsersShouldReload)).pipe(
-      tap(shouldReload => {
-        if (shouldReload) {
-          this.store.dispatch(new fromStore.LoadUsers());
-        }
-      }),
-      filter(loaded => loaded),
-      take(1)
-    );
+    return this.store.pipe(select(fromStore.getUsersShouldReload))
+      .pipe(
+        tap((shouldReload) => {
+          if (shouldReload) {
+            this.store.dispatch(new fromStore.LoadUsers());
+          }
+        }),
+        filter(shouldReload => !shouldReload),
+        take(1)
+      );
   }
 }

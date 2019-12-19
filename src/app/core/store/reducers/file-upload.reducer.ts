@@ -1,7 +1,4 @@
-import {
-  FileUploadAction,
-  FileUploadActionTypes
-} from '../actions/file-upload.action';
+import { FileUploadAction, FileUploadActionTypes } from '../actions/file-upload.action';
 
 export enum UploadStatus {
   Ready = 'Ready',
@@ -33,8 +30,7 @@ export const getStarted = (state: FileUploadState): boolean =>
 export const getRequested = (state: FileUploadState): boolean =>
   state.status === UploadStatus.Requested;
 
-export const getReady = (state: FileUploadState): boolean =>
-  state.status === UploadStatus.Ready;
+export const getReady = (state: FileUploadState): boolean => state.status === UploadStatus.Ready;
 
 export const getProgress = (state: FileUploadState): number => state.progress;
 
@@ -49,10 +45,7 @@ export const getCompleted = (state: FileUploadState): boolean =>
 
 export const getResult = (state: FileUploadState): any => state.result;
 
-export function fileUploadReducer(
-  state = initialState,
-  action: FileUploadAction
-): FileUploadState {
+export function reducer(state = initialState, action: FileUploadAction): FileUploadState {
   switch (action.type) {
     case FileUploadActionTypes.UPLOAD_REQUEST: {
       return {

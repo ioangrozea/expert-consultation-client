@@ -25,6 +25,13 @@ export class UserApiService {
       .pipe(catchError(aError => observableThrowError(aError)));
   }
 
+  public saveMultiple(users: IUser[]): Observable<IUser[]> {
+    return this.http.post<IUser[]>(`${environment.api_url}/users/bulk`, users, {})
+      .pipe(
+        catchError(aError => observableThrowError(aError))
+      );
+  }
+
   public saveExcel(usersExcel: string) {
     return this.http
       .post<IUser[]>(

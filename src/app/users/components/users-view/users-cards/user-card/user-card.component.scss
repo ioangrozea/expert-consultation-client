@@ -1,0 +1,18 @@
+@import 'mixins.scss';
+
+.user-card {
+  @include material-card;
+  margin: 16px;
+}
+
+.user-card-section {
+  line-height: 24px;
+}
+
+.mat-icon {
+  margin-right: 8px;
+}
+
+.mat-card-actions {
+  margin-bottom: 0;
+}

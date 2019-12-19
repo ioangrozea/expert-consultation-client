@@ -6,13 +6,15 @@
 # Docker-compose scenarios
 * start an nginx with the client:
 ``` shell
-docker-compose -f docker-compose-dev.yml up --build
+npm install
+npm run-script build
+docker-compose -f etc/docker/docker-compose-dev.yml up --build
 ```
 * clone and start an nginx with the client:
 ``` shell
-docker-compose -f docker-compose-prod.yml up --build
+docker-compose -f etc/docker/docker-compose-prod.yml up --build
 ```
-* clone run all tests within a headless chrome:
+* run the backend server API and all it's dependencies
 ``` shell
-docker-compose -f docker-compose-test.yml up --build
+docker-compose -f etc/docker/docker-compose-backend.yml up
 ```

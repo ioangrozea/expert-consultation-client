@@ -1,0 +1,6 @@
+<div class="form-wrapper">
+  <app-document-form (save)="onSave($event)"
+                     [document]="document"
+                     [filePath]="filePath$ | async">
+  </app-document-form>
+</div>

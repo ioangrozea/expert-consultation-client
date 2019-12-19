@@ -30,6 +30,15 @@ export class UserService {
       .pipe(map((iUser: IUser) => new User(iUser)));
   }
 
+  public saveMultiple(): Observable<User[]> {
+    return this.store.pipe(
+      select(fromStore.getImportUsers),
+      take(1),
+      mergeMap(
+        users => this.usersApiService.saveMultiple(users).pipe(map((theUsers: IUser[]) => theUsers.map(user => new User(user))))
+      ));
+  }
+
   private fromResponse(userResponse: IUser): User {
     return new User(userResponse);
   }

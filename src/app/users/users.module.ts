@@ -9,8 +9,17 @@ import * as fromComponents from './components';
 import * as fromGuards from './guards';
 
 @NgModule({
-  imports: [CommonModule, SharedModule, UsersRoutingModule],
-  declarations: [...fromContainers.components, ...fromComponents.components],
-  providers: [...fromGuards.guards]
+  imports: [
+    CommonModule,
+    SharedModule,
+    UsersRoutingModule,
+  ],
+  declarations: [
+    ...fromContainers.components,
+    ...fromComponents.components,
+  ],
+  providers: [
+    ...fromGuards.guards,
+  ],
 })
 export class UsersModule {}

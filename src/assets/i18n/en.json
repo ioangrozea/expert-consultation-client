@@ -36,6 +36,9 @@
         "organisation": "Organisation"
       }
     },
+    "card": {
+      "viewProfile": "View profile"
+    },
     "add": {
       "title": "Add members",
       "subTitle": "Do you want to add an individual member?",

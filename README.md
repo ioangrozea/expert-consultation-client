@@ -1,6 +1,6 @@
 # Legal Consultation App
 
-[![GitHub contributors](https://img.shields.io/github/contributors/code4romania/legal-consultation-client.svg?style=for-the-badge)](https://github.com/code4romania/legal-consultation-client/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/code4romania/legal-consultation-client.svg?style=for-the-badge)](https://github.com/code4romania/legal-consultation-client/commits/master) [![License: MPL 2.0](https://img.shields.io/badge/license-MPL%202.0-brightgreen.svg?style=for-the-badge)](https://opensource.org/licenses/MPL-2.0) [![Travis (.org)](https://img.shields.io/travis/code4romania/legal-consultation-client?style=for-the-badge)](https://travis-ci.com/code4romania/legal-consultation-client)
+[![GitHub contributors](https://img.shields.io/github/contributors/code4romania/legal-consultation-client.svg)](https://github.com/code4romania/legal-consultation-client/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/code4romania/legal-consultation-client.svg)](https://github.com/code4romania/legal-consultation-client/commits/master) [![License: MPL 2.0](https://img.shields.io/badge/license-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)  ![](https://github.com/code4romania/expert-consultation-client/workflows/Build/badge.svg)
 
 Webapp client for Legal Consultation, a project designed to ease the process of public consultation with experts in Romania.
 
@@ -15,6 +15,8 @@ We build a digital tool for this type of consultation to allow these groups to w
 A big problem is also the legislative hat and the fact that when feedback is needed, they need to have access to a suite of other legislative documents in order to give a pertinent comment, which so far falls under the responsibility of each of them and has the capacity everyone to discern which adjacent document is relevant or not. Digital tools allow them to consult other relevant laws directly on the platform and make the necessary connections for all participants on their own.
 
 The tool also contributes to the transparency of the consultation process, which will now be open to everyone, where everyone can see the comments of others and the end product.
+
+To find out more about this project, [check it out on Civic Labs](https://civiclabs.ro/ro/solutions/expert-consultation), the Code for Romanian research and prototyping program.
 
 [Contributing](#contributing) | [Built with](#built-with) | [Repos and projects](#repos-and-projects) | [Deployment](#deployment) | [Feedback](#feedback) | [License](#license) | [About Code4Ro](#about-code4ro)
 

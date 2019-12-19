@@ -40,4 +40,8 @@ export class AddUserComponent implements OnInit {
   private save(usersExcel: string) {
     this.store.dispatch(new fromStore.SaveUsersExcel(usersExcel));
   }
+  public redirectToImport() {
+    this.router.navigate(['/users/add/csv']);
+  }
+
 }

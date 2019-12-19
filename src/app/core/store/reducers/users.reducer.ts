@@ -1,12 +1,4 @@
-import {
-  Error,
-  Filter,
-  IFilter,
-  IPageData,
-  IUser,
-  PageData,
-  User
-} from '../../models';
+import { Error, Filter, IFilter, IPageData, IUser, PageData, User } from '../../models';
 import * as fromUsers from '../actions/users.action';
 
 export interface UserState {
@@ -28,22 +20,19 @@ export const initialState: UserState = {
   filter: {
     pageNumber: 0,
     sortField: 'lastName',
-    sortDirection: 'asc'
+    sortDirection: 'asc',
   } as IFilter,
   error: {} as Error
 };
 
-export function reducer(
-  state = initialState,
-  action: fromUsers.UsersAction
-): UserState {
+export function reducer(state = initialState, action: fromUsers.UsersAction): UserState {
   switch (action.type) {
     case fromUsers.UserActionTypes.LoadUsers: {
       const filter: Filter = action.payload;
       return {
         ...state,
         filter: filter ? filter.toJson() : initialState.filter,
-        loading: true
+        loading: true,
       } as UserState;
     }
 
@@ -53,7 +42,7 @@ export function reducer(
       const entities = users.reduce((e: { [id: number]: User }, user: User) => {
         return {
           ...e,
-          [user.id]: user.toJson()
+          [user.id]: user.toJson(),
         };
       }, {});
 
@@ -66,7 +55,7 @@ export function reducer(
         loaded: true,
         shouldReload: false,
         pageData: pageData.toJson(),
-        entities
+        entities,
       };
     }
 
@@ -74,7 +63,7 @@ export function reducer(
       return {
         ...state,
         loading: false,
-        loaded: false
+        loaded: false,
       } as UserState;
     }
 
@@ -94,7 +83,7 @@ export function reducer(
 
     default: {
       return {
-        ...state
+        ...state,
       } as UserState;
     }
   }

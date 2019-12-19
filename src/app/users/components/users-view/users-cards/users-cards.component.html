@@ -1,0 +1,11 @@
+<div fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center">
+  <app-user-card
+    fxFlex="33%"
+    fxFlex.md="50%"
+    fxFlex.sm="100%"
+    *ngFor="let user of users"
+    [hidden]="!user.firstName || !user.lastName"
+    [user]="user"
+  >
+  </app-user-card>
+</div>

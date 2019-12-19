@@ -20,6 +20,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { JwtInterceptor } from '@app/authentication/jwt.interceptor';
 import { FileUploadModule } from 'ng2-file-upload';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HeaderInterceptor } from '@app/interceptors/header.interceptor';
 
 export const metaReducers: any[] = !environment.production ? [storeFreeze] : [];
 

@@ -2,12 +2,8 @@ import { NgModule } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-// modules
 import { SharedModule } from '../shared/shared.module';
 import { DocumentsRoutingModule } from './documents-routing.module';
-
-// components
-
 import * as fromComponents from './components';
 import * as fromContainer from './containers';
 import * as fromService from './services';
@@ -30,4 +26,5 @@ import * as fromStore from './store';
     ...fromApiService.apiServices,
   ],
 })
-export class DocumentsModule {}
+export class DocumentsModule {
+}

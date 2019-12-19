@@ -54,7 +54,6 @@ export class UploadFileEffects {
       case HttpEventType.ResponseHeader:
         switch (event.status) {
           case 200:
-            return new UploadCompletedAction();
           case 201:
             return new UploadCompletedAction();
           default:
@@ -63,7 +62,6 @@ export class UploadFileEffects {
       case HttpEventType.Response: {
         switch (event.status) {
           case 200:
-            return new UploadCompletedWithResponseAction(event.body);
           case 201:
             return new UploadCompletedWithResponseAction(event.body);
           default:

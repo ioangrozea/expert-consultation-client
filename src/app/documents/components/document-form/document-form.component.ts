@@ -35,7 +35,9 @@ export class DocumentFormComponent implements OnInit, OnChanges {
     filePath: new FormControl('', [Validators.required])
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.documentForm.patchValue(this.document.toFormData());
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     const filePathChanges = changes['filePath'];

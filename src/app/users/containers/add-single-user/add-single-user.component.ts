@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { User, UserService } from '@app/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 import * as fromStore from '@app/core/store';
 import { CoreState } from '@app/core/store';
+import { Observable } from 'rxjs';
+import { Error } from '@app/core/models/error.model';
 
 @Component({
   selector: 'app-add-single-user',
@@ -12,6 +14,7 @@ import { CoreState } from '@app/core/store';
 })
 export class AddSingleUserComponent {
   public user: User = new User();
+  public error$: Observable<Error> = this.store.pipe(select(fromStore.getUsersErrors));
 
   constructor(private router: Router,
               private usersService: UserService,

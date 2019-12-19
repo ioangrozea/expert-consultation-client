@@ -1,6 +1,6 @@
 import { DocumentsComponent } from './documents/documents.component';
-import { DocumentBreakdownComponent } from '@app/documents/containers/document-breakdown/document-breakdown.component';
-import { AddDocumentComponent } from '@app/documents/containers/add-document/add-document.component';
+import { DocumentBreakdownComponent } from './document-breakdown/document-breakdown.component';
+import { AddDocumentComponent } from './add-document/add-document.component';
 
 export const components: any[] = [
   DocumentsComponent,

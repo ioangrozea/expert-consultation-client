@@ -16,10 +16,7 @@ export class DocumentsEffects {
   loadDocuments$ = this.actions$.pipe(
       ofType(documentsActions.DocumentsActionTypes.LoadDocuments),
       switchMap(() => this.documentsService.list()),
-      map(
-          (documentsPage: Page<DocumentConsolidate>) =>
-              new documentsActions.LoadDocumentsSuccess(documentsPage)
-      ),
+      map((documentsPage: Page<DocumentConsolidate>) => new documentsActions.LoadDocumentsSuccess(documentsPage)),
       catchError(error => of(new documentsActions.LoadDocumentsFail(error)))
   );
 
@@ -29,21 +26,15 @@ export class DocumentsEffects {
       map((action: documentsActions.SaveDocument) => action.payload),
       concatMap((document: DocumentMetadata) => {
         return this.documentsService.save(document).pipe(
-            map(
-                (savedDocument: DocumentMetadata) => new documentsActions.SaveDocumentSuccess(savedDocument)
-            ),
-            catchError(error =>
-                of(new documentsActions.SaveDocumentFail(this.mapError(error)))
-            )
+            map((savedDocument: DocumentMetadata) => new documentsActions.SaveDocumentSuccess(savedDocument)),
+            catchError(error => of(new documentsActions.SaveDocumentFail(this.mapError(error))))
         );
       })
   );
 
-  constructor(
-      private store$: Store<CoreState>,
-      private actions$: Actions,
-      private documentsService: DocumentsService
-  ) {
+  constructor(private store$: Store<CoreState>,
+              private actions$: Actions,
+              private documentsService: DocumentsService) {
   }
 
   private mapError(payload: any): Error {

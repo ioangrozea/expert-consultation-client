@@ -3,7 +3,7 @@
     <div class="column">
       <mat-form-field appearance="outline">
         <mat-label>{{ 'document.add.title' | translate }}</mat-label>
-        <input formControlName="documentTitle" matInput />
+        <input formControlName="documentTitle" matInput/>
       </mat-form-field>
     </div>
   </div>
@@ -12,13 +12,13 @@
     <div class="column">
       <mat-form-field appearance="outline">
         <mat-label>{{ 'document.add.number' | translate }}</mat-label>
-        <input formControlName="documentNumber" matInput type="number" />
+        <input formControlName="documentNumber" matInput type="number"/>
       </mat-form-field>
     </div>
     <div class="column">
       <mat-form-field appearance="outline">
         <mat-label>{{ 'document.add.initiator' | translate }}</mat-label>
-        <input formControlName="documentInitializer" matInput />
+        <input formControlName="documentInitializer" matInput/>
       </mat-form-field>
     </div>
     <div class="column">
@@ -37,26 +37,21 @@
     <div class="column">
       <mat-form-field appearance="outline">
         <mat-label>{{ 'document.add.release' | translate }}</mat-label>
-        <input
-          [matDatepicker]="releaseDatePicker"
-          formControlName="dateOfDevelopment"
-          matInput
-        />
-        <mat-datepicker-toggle
-          [for]="releaseDatePicker"
-          matSuffix
-        ></mat-datepicker-toggle>
+        <input [matDatepicker]="releaseDatePicker"
+               formControlName="dateOfDevelopment"
+               matInput/>
+        <mat-datepicker-toggle [for]="releaseDatePicker"
+                               matSuffix>
+        </mat-datepicker-toggle>
         <mat-datepicker #releaseDatePicker></mat-datepicker>
       </mat-form-field>
     </div>
     <div class="column">
       <mat-form-field appearance="outline">
         <mat-label>{{ 'document.add.receiving' | translate }}</mat-label>
-        <input
-          [matDatepicker]="receivingDatePicker"
-          formControlName="dateOfReceipt"
-          matInput
-        />
+        <input [matDatepicker]="receivingDatePicker"
+               formControlName="dateOfReceipt"
+               matInput/>
         <mat-datepicker-toggle
           [for]="receivingDatePicker"
           matSuffix
@@ -70,20 +65,18 @@
   <div class="row">
     <div class="column">
       <label class="file-uploader-label">{{
-        'document.add.file' | translate
-      }}</label>
+          'document.add.file' | translate
+        }}</label>
       <app-file-uploader [url]="url"></app-file-uploader>
     </div>
   </div>
 
   <div class="row buttons-wrapper">
-    <button
-      (click)="onSave()"
-      [class.button-disabled]="documentForm.invalid"
-      [disabled]="documentForm.invalid"
-      class="save-button"
-      mat-flat-button
-    >
+    <button (click)="onSave()"
+            [class.button-disabled]="documentForm.invalid"
+            [disabled]="documentForm.invalid"
+            class="save-button"
+            mat-flat-button>
       {{ 'button.save' | translate }}
     </button>
   </div>

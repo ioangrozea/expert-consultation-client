@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'add',
-    component: fromContainers.AddDocumentComponent
+    component: fromContainers.AddDocumentComponent,
   }
 ];
 
